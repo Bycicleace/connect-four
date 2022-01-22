@@ -10,6 +10,13 @@ const gameSchema = new Schema(
             default: 1
         },
         board: {
+            // The board is set up as an array of arrays.
+            // The enveloping array allows us to call on
+            // individual columns. eg: board[3] would select
+            // the 4th column. baord[3][2] would select the
+            // third element of the 4th column. We can use
+            // '1' for player1 tokens and '2' for player2
+            // tokens
             type: Array,
             default: [
                 [0, 0, 0, 0, 0, 0,],
