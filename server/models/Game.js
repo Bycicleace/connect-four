@@ -3,8 +3,13 @@ const userSchema = require('./User');
 
 const gameSchema = new Schema(
     {
+        // players 1 and 2 will reference individual userSchema
+        // allowing player data to be available in the individual
+        // game objects.
         player1: {userSchema},
         player2: {userSchema},
+        // playerTurn will identify which player's turn it is
+        // '1' for player1 and '2' for player2
         playerTurn: {
             type: Number,
             default: 1
