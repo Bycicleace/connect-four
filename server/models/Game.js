@@ -54,4 +54,4 @@ userSchema.virtual('playerTurn').get(function() {
 
 const Game = model('Game', gameSchema);
 
-module.exports = User;
+module.exports = Game;
