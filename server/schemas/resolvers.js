@@ -15,7 +15,6 @@ const resolvers = {
   Mutation: {
     // resolver for adding a game
     addGame: async (parent, args, context) => {
-      console.log(context.user);
       if (context.user) {
         const game = await Game.create({ player1: context.user.username });
 
@@ -32,20 +31,27 @@ const resolvers = {
       console.log(context.user);
       
       if (context.user) {
-        console.log(context.user._id);
-        const updatedGame = await Game.findByIdAndUpdate(
-          { _id: gameId },
-          { $set: { player2: context.user.username } },
-          { new: true }
-        );
-        
-        await User.findByIdAndUpdate(
-          { _id: context.user._id},
-          { $push: { games: updatedGame } },
-          { new: true }
-        );
+        const game = await Game.findById({ _id: gameId });
 
-        return updatedGame;    
+        if (game.player2 === "Empty") {
+          const updatedGame = await Game.findByIdAndUpdate(
+            { _id: gameId },
+            { $set: { player2: context.user.username } },
+            { new: true }
+          );
+          
+          await User.findByIdAndUpdate(
+            { _id: context.user._id},
+            { $push: { games: updatedGame } },
+            { new: true, runValidators: true }
+          );
+          
+          return updatedGame;    
+        }
+        else {
+          console.log('Game is full!');
+          return game;
+        }
       }
     },
     // resolver for adding a user and returning user and signed JWT
@@ -56,7 +62,6 @@ const resolvers = {
       return { token, user };
     },
     updateUser: async (parent, args, context) => {
-      console.log(context.user);
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
           new: true,
