@@ -30,8 +30,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        addGame(player1: String!, _id: ID!): Game
-        joinGame(player2: String!): Game
+        addGame: Game
+        joinGame(gameId: ID!): Game
         addUser(username: String!, email: String!, password: String!): Auth
         updateUser(username: String, email: String, password: String): User
         login(email: String!, password: String!): Auth

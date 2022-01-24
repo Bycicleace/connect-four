@@ -4,20 +4,20 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    game: async (parent, { gameId }) => {
-      return Game.findOne(gameId);
+    game: async (parent, { _id }) => {
+      return Game.findOne({ _id });
     },
-    user: async (parent, { username }) => {
-      return User.findOne(username);
+    user: async (parent, { _id }) => {
+      return User.findOne({ _id });
     },
   },
 
   Mutation: {
     // resolver for adding a game
-    addGame: async (parent, context) => {
+    addGame: async (parent, args, context) => {
       console.log(context.user);
       if (context.user) {
-        const game = new Game(context.user.username);
+        const game = await Game.create({ player1: context.user.username });
 
         await User.findByIdAndUpdate(context.user._id, {
           $push: { games: game },
@@ -28,17 +28,24 @@ const resolvers = {
 
       throw new AuthenticationError("Not Logged In!");
     },
-    joinGame: async (parent, { _id }, context) => {
+    joinGame: async (parent, { gameId }, context) => {      
       console.log(context.user);
+      
       if (context.user) {
-        const game = await Game.findByIdAndUpdate(_id, {
-          $set: { player2: context.user.username },
-        });
-        return await User.findByIdAndUpdate(
-          context.user._id,
-          { $push: { games: game } },
+        console.log(context.user._id);
+        const updatedGame = await Game.findByIdAndUpdate(
+          { _id: gameId },
+          { $set: { player2: context.user.username } },
           { new: true }
         );
+        
+        await User.findByIdAndUpdate(
+          { _id: context.user._id},
+          { $push: { games: updatedGame } },
+          { new: true }
+        );
+
+        return updatedGame;    
       }
     },
     // resolver for adding a user and returning user and signed JWT
