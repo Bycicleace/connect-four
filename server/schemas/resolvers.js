@@ -15,6 +15,7 @@ const resolvers = {
   Mutation: {
     // resolver for adding a game
     addGame: async (parent, context) => {
+      console.log(context.user);
       if (context.user) {
         const game = new Game(context.user.username);
 
@@ -28,6 +29,7 @@ const resolvers = {
       throw new AuthenticationError("Not Logged In!");
     },
     joinGame: async (parent, { _id }, context) => {
+      console.log(context.user);
       if (context.user) {
         const game = await Game.findByIdAndUpdate(_id, {
           $set: { player2: context.user.username },
@@ -47,6 +49,7 @@ const resolvers = {
       return { token, user };
     },
     updateUser: async (parent, args, context) => {
+      console.log(context.user);
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
           new: true,
