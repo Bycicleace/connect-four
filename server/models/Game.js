@@ -39,7 +39,7 @@ const gameSchema = new Schema(
     },
     {
         toJSON: {
-            virtuals: true
+            virtuals: false
         }
     }
 );
