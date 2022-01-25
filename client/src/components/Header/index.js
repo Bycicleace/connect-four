@@ -10,7 +10,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-secondary mb-4 py-2 flex-row align-center">
+    <header className="bg-secondaryflex-row align-center">
       <div className="row navbar justify-space-between-lg ">
         <div className='col-6 justify-space-between'>
           <img src={Logo} alt="Connect-4 logo" className='header-img'></img>

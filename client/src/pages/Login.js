@@ -40,8 +40,8 @@ const Login = (props) => {
     };
 
     return (
-        <main className="flex-row justify-center mb-4">
-            <div className="col-12 col-md-6">
+        <main className="flex-row justify-center mb-4 page-body">
+            <div className="col-12 col-md-6 main-card">
                 <div className="card">
                     <h4 className="card-header">Login</h4>
                     <div className="card-body">
