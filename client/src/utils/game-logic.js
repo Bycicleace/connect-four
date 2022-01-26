@@ -50,20 +50,23 @@ function checkDiagonalWinRight(board, column = -1) {
     // If win, return true, else false.
 }
 
-function makeMove(board, column, player) {
-    // Takes the player number, and puts their number in the next open field in the column array provided.
-    // Returns the board
-    if (isColumnOpen(column)) {
-        for (let index = 0; index <= 5; index++) {
-            if (column[index] === '0')
-            
-        }
+function makeMove(board, columnNumber, player) {
+    // Takes the player number, and puts their number in the next open field in the column provided.
+    // Returns the board. If invalid, returns false.
+    if (isColumnOpen(board[columnNumber])) {
+        let spot = getAvailableSpot(board[columnNumber]);
+        let before = board[columnNumber].slice(0, spot);
+        let after = board[columnNumber].slice(spot + 1);
+        let newColumn = before + player + after;
+        board[columnNumber] = newColumn;
+        return board;
+    } else {
+        return false;
     }
-    
 }
 
 function isColumnOpen(column) {
-    // Takes in a column. If it's full, returns false, if not, returns true.
+    // Takes in a column array. If it's full, returns false, if not, returns true.
     if (column[0] != '0') {
         return true;
     } else {
@@ -72,5 +75,13 @@ function isColumnOpen(column) {
 }
 
 function getAvailableSpot(column) {
-    // Takes in a column and returns the next available row to use.
+    // Takes in a column array and returns the next available row to use. If no spots available, return -1
+    let row = -1
+    for (let index = 5; index >= 0; index--) {
+        if (column[index] === '0') {
+            row = index;
+            return row;
+        }
+    }
+    return row;
 }
