@@ -53,4 +53,24 @@ function checkDiagonalWinRight(board, column = -1) {
 function makeMove(board, column, player) {
     // Takes the player number, and puts their number in the next open field in the column array provided.
     // Returns the board
+    if (isColumnOpen(column)) {
+        for (let index = 0; index <= 5; index++) {
+            if (column[index] === '0')
+            
+        }
+    }
+    
+}
+
+function isColumnOpen(column) {
+    // Takes in a column. If it's full, returns false, if not, returns true.
+    if (column[0] != '0') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getAvailableSpot(column) {
+    // Takes in a column and returns the next available row to use.
 }
