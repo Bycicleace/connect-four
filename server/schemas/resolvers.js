@@ -27,29 +27,28 @@ const resolvers = {
 
       throw new AuthenticationError("Not Logged In!");
     },
-    joinGame: async (parent, { gameId }, context) => {      
+    joinGame: async (parent, { gameId }, context) => {
       console.log(context.user);
-      
+
       if (context.user) {
         const game = await Game.findById({ _id: gameId });
 
-        if (game.player2 === "Empty") {
+        if (game.isFull === false) {
           const updatedGame = await Game.findByIdAndUpdate(
             { _id: gameId },
             { $set: { player2: context.user.username } },
             { new: true }
           );
-          
+
           await User.findByIdAndUpdate(
-            { _id: context.user._id},
+            { _id: context.user._id },
             { $push: { games: updatedGame } },
             { new: true, runValidators: true }
           );
-          
-          return updatedGame;    
-        }
-        else {
-          console.log('Game is full!');
+
+          return updatedGame;
+        } else {
+          console.log("Game is full!");
           return game;
         }
       }
