@@ -62,7 +62,7 @@ function checkHorizontalWin(board, columnNumber) {
     // Check for win in rows. ColumnNumber is the last column played.
     // If win, return true, else false
     let { lastMove, player } = getLastMove(board, columnNumber);
-    console.log(`Last move: column ${columnNumber}, row ${lastMove}`);
+    // console.log(`Last move: column ${columnNumber}, row ${lastMove}`);
 
     if (!player) {
         return false;
@@ -105,10 +105,10 @@ function checkHorizontalWin(board, columnNumber) {
     }
 
     if (winCount >= 4) {
-        console.log(true, player, winCount, winArray);
+        //console.log(true, player, winCount, winArray);
         return true;
     } else {
-        console.log(false, player, winCount, winArray);
+        //console.log(false, player, winCount, winArray);
         return false;
     }
 }
