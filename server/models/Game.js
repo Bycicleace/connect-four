@@ -20,6 +20,10 @@ const gameSchema = new Schema(
         },
         // playerTurn will identify which player's turn it is
         // '1' for player1 and '2' for player2
+        isFull: {
+            type: Boolean,
+            default: false
+        },
         playerTurn: {
             type: Number,
             default: 1
