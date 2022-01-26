@@ -38,7 +38,7 @@ function checkVerticalWin(board, columnNumber) {
     // Get the last move the player made in that column.
     let { lastMove, player } = getLastMove(board,columnNumber);
     // This means the column is empty
-    if (player === '0') {
+    if (!player) {
         return false;
     }
     // The minimum amount of chips to win is 4, which would be spots 2, 3, 4, and 5.
@@ -62,9 +62,15 @@ function checkHorizontalWin(board, columnNumber) {
     // Check for win in rows. ColumnNumber is the last column played.
     // If win, return true, else false
     let { lastMove, player } = getLastMove(board, columnNumber);
+    console.log(`Last move: column ${columnNumber}, row ${lastMove}`);
+
+    if (!player) {
+        return false;
+    }
 
     // Set to one as the columnNumber's chip is then counted.
     let winCount = 1;
+    winArray = [String(columnNumber) + String(lastMove)];
 
     // Check each column to the left of the played column at the played row's height. For each match in sequence, increment winCount.
     // Stop when a different/no chip is found.
@@ -73,10 +79,10 @@ function checkHorizontalWin(board, columnNumber) {
             if (board[index][lastMove] === player) {
                 // discount columnNumber's match.
                 if (index != columnNumber) {
+                    winArray.push(String(index) + String(lastMove));
                     winCount++;
                 }
             } else {
-                console.log('finished - left');
                 break;
             }
         }
@@ -89,18 +95,20 @@ function checkHorizontalWin(board, columnNumber) {
             if(board[index][lastMove] === player) {
                 // discount columnNumber's match.
                 if (index != columnNumber) {
+                    winArray.push(String(index) + String(lastMove));
                     winCount++;
                 }
             } else {
-                console.log('finished - right');
                 break;
             }
         }
     }
 
     if (winCount >= 4) {
+        console.log(true, player, winCount, winArray);
         return true;
     } else {
+        console.log(false, player, winCount, winArray);
         return false;
     }
 }
@@ -115,10 +123,13 @@ function checkDiagonalWinRight(board, columnNumber = -1) {
     // If win, return true, else false.
 }
 
-function getLastMove(board, column) {
-    let lastMove = getAvailableSpot(columnNumber) + 1;
+function getLastMove(board, columnNumber) {
+    let lastMove = getAvailableSpot(board[columnNumber]) + 1;
     let player = board[columnNumber][lastMove];
 
+    if (player === '0') {
+        return { lastMove: false, player: false };
+    }
     return { lastMove, player };
 }
 
