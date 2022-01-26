@@ -157,3 +157,16 @@ function getAvailableSpot(columnArray) {
     }
     return row;
 }
+
+function displayBoard(board) {
+    // Used to console log the board correctly.
+    let row;
+    for (let rowNum = 0; rowNum < 6; rowNum++) {
+        row = '';
+        for (let colNum = 6; colNum >= 0; colNum--) {
+            row += board[colNum][rowNum];
+        }
+        console.log(row);
+    }
+    
+}
