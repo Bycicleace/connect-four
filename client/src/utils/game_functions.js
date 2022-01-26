@@ -116,11 +116,15 @@ function checkHorizontalWin(board, columnNumber) {
 function checkDiagonalWinLeft(board, columnNumber = -1) {
     // Check for win from upper left to lower right diagonal. Column is the last column played (optional)
     // If win, return true, else false
+
+    // go up first. Then, check to see if it's possible to win with what's below
 }
 
 function checkDiagonalWinRight(board, columnNumber = -1) {
     // Check for win from upper right to lower left diagonal. Column is the last column played (optional)
     // If win, return true, else false.
+
+    // go up first. Then, check to see if it's possible to win with what's below
 }
 
 function getLastMove(board, columnNumber) {
@@ -133,9 +137,10 @@ function getLastMove(board, columnNumber) {
     return { lastMove, player };
 }
 
-function makeMove(board, columnNumber, player) {
+function makeMove(inBoard, columnNumber, player) {
     // Takes the player number, and puts their number in the next open field in the column provided.
     // Returns the board. If invalid, returns false.
+    let board = [...inBoard];
     if (isColumnOpen(board[columnNumber])) {
         let spot = getAvailableSpot(board[columnNumber]);
         let before = board[columnNumber].slice(0, spot);
