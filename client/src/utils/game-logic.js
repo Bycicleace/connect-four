@@ -30,22 +30,45 @@ function checkWinner(board, column = -1) {
     // There are four directions to check given a move. Up/Down, Left/Right, and the two diagonals.
 }
 
-function checkVerticalWin(board, column = -1) {
-    // Check for win in columns. Column is the last column played (optional).
+function checkVerticalWin(board, columnNumber) {
+    // Check for win in columns. Column is the last column played.
     // If win, return true, else false.
+
+    // Get the next open spot as the one below is the played chip.
+    let lastMove = getAvailableSpot(columnNumber) + 1;
+    let player = board[columnNumber][lastMove];
+    // This means the column is empty
+    if (player === '0') {
+        return false;
+    }
+    // The minimum amount of chips to win is 4, which would be spots 2, 3, 4, and 5.
+    // If the last move is 0, 1 or 2, then it's possible, otherwise, it's not.
+    if (lastMove > 2) {
+        // Impossible to win 
+        return false;
+    } else {
+        let hasWon = true;
+        for (let index = lastMove; index < board[columnNumber].length; index++) {
+            if (board[columnNumber][index] != player) {
+                hasWon = false;
+                return hasWon;
+            }
+        }
+        return hasWon;
+    }
 }
 
-function checkHorizontalWin(board, column = -1) {
+function checkHorizontalWin(board, columnNumber = -1) {
     // Check for win in rows. Column is the last column played (optional)
     // If win, return true, else false
 }
 
-function checkDiagonalWinLeft(board, column = -1) {
+function checkDiagonalWinLeft(board, columnNumber = -1) {
     // Check for win from upper left to lower right diagonal. Column is the last column played (optional)
     // If win, return true, else false
 }
 
-function checkDiagonalWinRight(board, column = -1) {
+function checkDiagonalWinRight(board, columnNumber = -1) {
     // Check for win from upper right to lower left diagonal. Column is the last column played (optional)
     // If win, return true, else false.
 }
@@ -65,20 +88,20 @@ function makeMove(board, columnNumber, player) {
     }
 }
 
-function isColumnOpen(column) {
-    // Takes in a column array. If it's full, returns false, if not, returns true.
-    if (column[0] === '0') {
+function isColumnOpen(columnArray) {
+    // Takes in a columnArray array. If it's full, returns false, if not, returns true.
+    if (columnArray[0] === '0') {
         return true;
     } else {
         return false;
     }
 }
 
-function getAvailableSpot(column) {
-    // Takes in a column array and returns the next available row to use. If no spots available, return -1
+function getAvailableSpot(columnArray) {
+    // Takes in a columnArray array and returns the next available row to use. If no spots available, return -1
     let row = -1
     for (let index = 5; index >= 0; index--) {
-        if (column[index] === '0') {
+        if (columnArray[index] === '0') {
             row = index;
             return row;
         }
