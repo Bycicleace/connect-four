@@ -8,6 +8,18 @@
         Given a column number and board, check to make sure that the player can put their piece in that column (column is not full).
     
     The board will start empty. All arrays will have 0s. When a player makes a move, their player number is placed in the corresponding spot.
+    The board is expected to be an array of strings, where each string comprises of 6 numbers, in string format. Each of these strings in the array
+    represent a column on the board:
+
+         Right
+        000000
+        000000
+        000000
+    Top 000000  Bottom
+        000000
+        000000
+        000000
+         Left
 */
 
 function checkWinner(board, column = -1) {
