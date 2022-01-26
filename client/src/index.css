@@ -11,3 +11,43 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.header-link {
+  text-decoration: none!important;
+  float: right;
+  padding: 5px;
+  color: red;
+  font-size: 2em;
+}
+
+.header-link:hover {
+  text-decoration: none!important;
+  float: right;
+  padding: 5px;
+  color: yellowgreen;
+  font-size: 2em;
+}
+
+.navbar {
+  background-color: blue;
+}
+ 
+.header-img{
+  width: 10%;
+  height: auto;
+}
+.header-title{
+  font-size: 3.5em;
+  color: yellow
+}
+
+.main-card{
+  margin: auto;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  background-color: blue;
+}
+body, form,.btn, .input-form, .card-body, .card-header, .card, main, html, .page-body, .container{
+  background-color: blue;
+  color:yellow
+}
