@@ -28,15 +28,15 @@ function checkWinner(board, column = -1) {
     // column should be a number corresponding to the column (left to right 0 - 6) that the last move was made in.
 
     // There are four directions to check given a move. Up/Down, Left/Right, and the two diagonals.
+
 }
 
 function checkVerticalWin(board, columnNumber) {
     // Check for win in columns. Column is the last column played.
     // If win, return true, else false.
 
-    // Get the next open spot as the one below is the played chip.
-    let lastMove = getAvailableSpot(columnNumber) + 1;
-    let player = board[columnNumber][lastMove];
+    // Get the last move the player made in that column.
+    let { lastMove, player } = getLastMove(board,columnNumber);
     // This means the column is empty
     if (player === '0') {
         return false;
@@ -58,9 +58,51 @@ function checkVerticalWin(board, columnNumber) {
     }
 }
 
-function checkHorizontalWin(board, columnNumber = -1) {
-    // Check for win in rows. Column is the last column played (optional)
+function checkHorizontalWin(board, columnNumber) {
+    // Check for win in rows. ColumnNumber is the last column played.
     // If win, return true, else false
+    let { lastMove, player } = getLastMove(board, columnNumber);
+
+    // Set to one as the columnNumber's chip is then counted.
+    let winCount = 1;
+
+    // Check each column to the left of the played column at the played row's height. For each match in sequence, increment winCount.
+    // Stop when a different/no chip is found.
+    if (columnNumber != 0) {
+        for (let index = columnNumber; index >= 0; index--) {
+            if (board[index][lastMove] === player) {
+                // discount columnNumber's match.
+                if (index != columnNumber) {
+                    winCount++;
+                }
+            } else {
+                console.log('finished - left');
+                break;
+            }
+        }
+    }
+
+    // Check each column to the right of the played column at the played row's height. For each match in sequence, increment winCount.
+    // Stop when a different/no chip is found.
+    if (columnNumber != 6) {
+        for (let index = columnNumber; index <= 6; index++) {
+            if(board[index][lastMove] === player) {
+                // discount columnNumber's match.
+                if (index != columnNumber) {
+                    winCount++;
+                }
+            } else {
+                console.log('finished - right');
+                break;
+            }
+        }
+    }
+
+    if (winCount >= 4) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function checkDiagonalWinLeft(board, columnNumber = -1) {
@@ -71,6 +113,13 @@ function checkDiagonalWinLeft(board, columnNumber = -1) {
 function checkDiagonalWinRight(board, columnNumber = -1) {
     // Check for win from upper right to lower left diagonal. Column is the last column played (optional)
     // If win, return true, else false.
+}
+
+function getLastMove(board, column) {
+    let lastMove = getAvailableSpot(columnNumber) + 1;
+    let player = board[columnNumber][lastMove];
+
+    return { lastMove, player };
 }
 
 function makeMove(board, columnNumber, player) {
