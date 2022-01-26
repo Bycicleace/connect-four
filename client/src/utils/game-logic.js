@@ -67,7 +67,7 @@ function makeMove(board, columnNumber, player) {
 
 function isColumnOpen(column) {
     // Takes in a column array. If it's full, returns false, if not, returns true.
-    if (column[0] != '0') {
+    if (column[0] === '0') {
         return true;
     } else {
         return false;
