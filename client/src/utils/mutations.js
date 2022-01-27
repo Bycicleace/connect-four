@@ -24,6 +24,18 @@ export const JOIN_GAME = gql`
   }
 `;
 
+export const UPDATE_BOARD = gql`
+  mutation updateBoard($id: ID!, $board: [String]!, $playerTurn: Int!) {
+    updateBoard(gameId: $id, gameBoard: $board, playerTurn: $playerTurn) {
+      _id
+      player1
+      player2
+      playerTurn
+      board
+    }
+  }
+`;
+
 
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
