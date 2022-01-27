@@ -28,7 +28,14 @@ function checkWinner(board, columnNumber) {
     // column should be a number corresponding to the column (left to right 0 - 6) that the last move was made in.
 
     // There are four directions to check given a move. Up/Down, Left/Right, and the two diagonals.
-    return;
+    if (checkVerticalWin(board, columnNumber) ||
+        checkHorizontalWin(board, columnNumber) ||
+        checkDiagonalWinLeft(board, columnNumber) ||
+        checkDiagonalWinRight(board,columnNumber)) {
+            return true;
+    } else {
+        return false;
+    }
 }
 
 function checkVerticalWin(board, columnNumber) {
@@ -209,20 +216,20 @@ function checkDiagonalWinRight(board, columnNumber = -1) {
 
     // Takes into account the move that was just made.
     let winCount = 1;
-    let winMoves = []
-    winMoves.push(String(column) + String(row));
+    // let winMoves = []
+    // winMoves.push(String(column) + String(row));
 
     // Check up and to the right
-    console.log(`Checking up and to the right`);
+    // console.log(`Checking up and to the right`);
     if (column > 0 && row > 0) {
         for (let index = column; index >= 0; index--) {
-            console.log(`Checking column ${index}, row ${row}...`);
+            // console.log(`Checking column ${index}, row ${row}...`);
             if (row >= 0) {
                 if (board[index][row] === player) {
                     // Account for duplicates
                     if (index != column && row != lastMove) {
                         winCount++;
-                        winMoves.push(String(index) + String(row));
+                        // winMoves.push(String(index) + String(row));
                     }
                 } else {
                     break;
@@ -237,16 +244,16 @@ function checkDiagonalWinRight(board, columnNumber = -1) {
 
     row = lastMove;
     // Check down and to the left
-    console.log(`Checking down and to the left`);
+    // console.log(`Checking down and to the left`);
     if (column < 6 && row < 5) {
         for (let index = column; index <= 6; index++) {
-            console.log(`Checking column ${index}, row ${row}...`);
+            // console.log(`Checking column ${index}, row ${row}...`);
             if (row <= 5) {
                 if (board[index][row] === player) {
                     // Account for duplicates
                     if (index != column && row != lastMove) {
                         winCount++;
-                        winMoves.push(String(index) + String(row));
+                        // winMoves.push(String(index) + String(row));
                     }
                 } else {
                     break;
@@ -260,10 +267,10 @@ function checkDiagonalWinRight(board, columnNumber = -1) {
     }
 
     if (winCount >= 4) {
-        console.log(true, player, winMoves);
+        // console.log(true, player, winMoves);
         return true;
     } else {
-        console.log(false, player, winMoves);
+        // console.log(false, player, winMoves);
         return false;
     }
 }
@@ -326,4 +333,9 @@ function displayBoard(board) {
         console.log(row);
     }
     
+}
+
+module.exports = {
+    checkWinner,
+    makeMove
 }
