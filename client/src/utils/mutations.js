@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const ADD_GAME = gql`
-  mutation addGame() {
-    addGame() {
+  mutation addGame {
+    addGame {
       _id
       player1
       player2
