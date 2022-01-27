@@ -22,13 +22,13 @@
          Left
 */
 
-function checkWinner(board, column = -1) {
+function checkWinner(board, columnNumber) {
     // Take in game and an optional column number (last column chosen). Then, if move is populated, check for 4 in a row based around that last move.
     // Otherwise, check the entire gameboard for a win.
     // column should be a number corresponding to the column (left to right 0 - 6) that the last move was made in.
 
     // There are four directions to check given a move. Up/Down, Left/Right, and the two diagonals.
-
+    return;
 }
 
 function checkVerticalWin(board, columnNumber) {
@@ -113,11 +113,72 @@ function checkHorizontalWin(board, columnNumber) {
     }
 }
 
-function checkDiagonalWinLeft(board, columnNumber = -1) {
+function checkDiagonalWinLeft(board, columnNumber) {
     // Check for win from upper left to lower right diagonal. Column is the last column played (optional)
     // If win, return true, else false
 
     // go up first. Then, check to see if it's possible to win with what's below
+    let { lastMove, player } = getLastMove(board, columnNumber);
+
+    if (!player) {
+        // column is empty
+        return false;
+    }
+
+    // defined for ease
+    let column = columnNumber;
+    let row = lastMove;
+
+    // Takes into account the move that was just made.
+    let winCount = 1;
+    let winMoves = []
+    winMoves.push(String(column) + String(row));
+
+    // Check up and to the left
+    console.log(`Checking up and to the left`);
+    if (column < 6 && row > 0) {
+        for (let index = column; index <= 6; index++) {
+            row -= 1;
+            console.log(`Checking column ${index}, row ${row}...`);
+            if (row >= 0) {
+                if (board[index][row] === player) {
+                    winCount++;
+                    winMoves.push(String(index) + String(row));
+                }
+            } else {
+                // I've hit the top of the board
+                break;
+            }
+        }
+    }
+
+    row = lastMove;
+    console.log(`Checking down and to the right`)
+    // Check down and to the right
+    if (column > 0 && row < 5) {
+        for (let index = column; index >= 0; index--) {
+            row += 1;
+            console.log(`Checking column ${index}, row ${row}...`);
+            if (row <= 5) {
+                if (board[index][row] === player) {
+                    winCount++;
+                    winMoves.push(String(index) + String(row));
+                }
+            } else {
+                // I've hit the bottom....
+                break;
+            }
+        }
+    }
+
+    if (winCount >= 4) {
+        console.log(true, player, winMoves);
+        return true;
+    } else {
+        console.log(false, player, winMoves);
+        return false;
+    }
+
 }
 
 function checkDiagonalWinRight(board, columnNumber = -1) {
