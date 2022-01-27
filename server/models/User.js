@@ -23,7 +23,6 @@ const userSchema = new Schema(
         games: [
             {
                 type: Schema.Types.ObjectId,
-                unique: true,
                 ref: 'Game'
             }
         ],

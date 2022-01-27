@@ -28,6 +28,7 @@ const Login = (props) => {
             });
 
             Auth.login(data.login.token, data.login.user);
+             console.log(data.login.token, data.login.user)
         } catch (e) {
             console.error(e);
         }
