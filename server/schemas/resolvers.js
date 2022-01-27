@@ -62,9 +62,9 @@ const resolvers = {
       throw new AuthenticationError("Not Logged In!");
     },
     updateBoard: async (parent, { gameId, gameBoard, playerTurn }, context) => {
-      // const game = await Game.findById({ _id: gameId });
-      // const currentUser = context.user.username;
-      // if (currentUser === game.player1 || currentUser === game.player2) {
+      const game = await Game.findById({ _id: gameId });
+      const currentUser = context.user.username;
+      if (currentUser === game.player1 || currentUser === game.player2) {
         return await Game.findByIdAndUpdate(
           { _id: gameId },
           {
@@ -75,9 +75,9 @@ const resolvers = {
           },
           { new: true }
         );
-      // }
+      }
 
-      throw new AuthenticationError("Not Logged In!");
+      throw new AuthenticationError("Not a player of this game!");
     },
     // resolver for adding a user and returning user and signed JWT
     addUser: async (parent, args) => {
