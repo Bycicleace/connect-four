@@ -14,7 +14,7 @@ import Header from './components/Header/Header';
 
 import Game from './pages/Game/Game';
 import Login from './pages/Login/Login';
-import Profile from './pages/Profile/Profile';
+// import Profile from './pages/Profile/Profile';
 import Signup from './pages/Signup/Signup';
 
 const httpLink = createHttpLink({
@@ -47,7 +47,7 @@ function App() {
               <Route exact path="/game" component={Game} />
               <Route exact path="/" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              <Route exact path="/profile/:username?" component={Profile} />
+              {/* <Route exact path="/profile/:username?" component={Profile} /> */}
             </Switch>
           </div>
           {/* <Footer /> */}
