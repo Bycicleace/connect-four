@@ -237,15 +237,16 @@ function checkDiagonalWinRight(board, columnNumber = -1) {
 
     row = lastMove;
     // Check down and to the left
+    console.log(`Checking down and to the left`);
     if (column < 6 && row < 5) {
         for (let index = column; index <= 6; index++) {
-            // console.log(`Checking column ${index}, row ${row}...`);
+            console.log(`Checking column ${index}, row ${row}...`);
             if (row <= 5) {
                 if (board[index][row] === player) {
                     // Account for duplicates
                     if (index != column && row != lastMove) {
                         winCount++;
-                        // winMoves.push(String(index) + String(row));
+                        winMoves.push(String(index) + String(row));
                     }
                 } else {
                     break;
