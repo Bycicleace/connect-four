@@ -1,9 +1,14 @@
-// import React, { useState } from 'react';
+import React from 'react';
+import userBio from '../components/UserBio';
+import activeGames from '../components/ActiveGames';
+import openGames from '../components/OpenGames';
 
-// return (
-//     <main className="flex-row justify-center mb-4 page-body">
-// <h1>Username</h1>
-//     </main>
-// );
+return (
+    <main className="profile_page">
+<userBio />
+<activeGames />
+<openGames />
+    </main>
+);
 
-// export default Profile;
+export default Profile;
