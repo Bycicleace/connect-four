@@ -131,20 +131,20 @@ function checkDiagonalWinLeft(board, columnNumber) {
 
     // Takes into account the move that was just made.
     let winCount = 1;
-    let winMoves = []
-    winMoves.push(String(column) + String(row));
+    // let winMoves = []
+    // winMoves.push(String(column) + String(row));
 
     // Check up and to the left
-    console.log(`Checking up and to the left`);
+    // console.log(`Checking up and to the left`);
     if (column < 6 && row > 0) {
         for (let index = column; index <= 6; index++) {
-            console.log(`Checking column ${index}, row ${row}...`);
+            // console.log(`Checking column ${index}, row ${row}...`);
             if (row >= 0) {
                 if (board[index][row] === player) {
                     // Account for duplicates
                     if (index != column && row != lastMove) {
                         winCount++;
-                        winMoves.push(String(index) + String(row));
+                        // winMoves.push(String(index) + String(row));
                     }
                 } else {
                     break;
@@ -158,17 +158,17 @@ function checkDiagonalWinLeft(board, columnNumber) {
     }
 
     row = lastMove;
-    console.log(`Checking down and to the right`)
+    // console.log(`Checking down and to the right`)
     // Check down and to the right
     if (column > 0 && row < 5) {
         for (let index = column; index >= 0; index--) {
-            console.log(`Checking column ${index}, row ${row}...`);
+            // console.log(`Checking column ${index}, row ${row}...`);
             if (row <= 5) {
                 if (board[index][row] === player) {
                     // Account for duplicates
                     if (index != column && row != lastMove) {
                         winCount++;
-                        winMoves.push(String(index) + String(row));
+                        // winMoves.push(String(index) + String(row));
                     }
                 } else {
                     break;
@@ -182,10 +182,10 @@ function checkDiagonalWinLeft(board, columnNumber) {
     }
 
     if (winCount >= 4) {
-        console.log(true, player, winMoves);
+        // console.log(true, player, winMoves);
         return true;
     } else {
-        console.log(false, player, winMoves);
+        // console.log(false, player, winMoves);
         return false;
     }
 
