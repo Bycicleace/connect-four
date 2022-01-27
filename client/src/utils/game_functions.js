@@ -138,17 +138,22 @@ function checkDiagonalWinLeft(board, columnNumber) {
     console.log(`Checking up and to the left`);
     if (column < 6 && row > 0) {
         for (let index = column; index <= 6; index++) {
-            row -= 1;
             console.log(`Checking column ${index}, row ${row}...`);
             if (row >= 0) {
                 if (board[index][row] === player) {
-                    winCount++;
-                    winMoves.push(String(index) + String(row));
+                    // Account for duplicates
+                    if (index != column && row != lastMove) {
+                        winCount++;
+                        winMoves.push(String(index) + String(row));
+                    }
+                } else {
+                    break;
                 }
             } else {
                 // I've hit the top of the board
                 break;
             }
+            row -= 1;
         }
     }
 
@@ -157,17 +162,22 @@ function checkDiagonalWinLeft(board, columnNumber) {
     // Check down and to the right
     if (column > 0 && row < 5) {
         for (let index = column; index >= 0; index--) {
-            row += 1;
             console.log(`Checking column ${index}, row ${row}...`);
             if (row <= 5) {
                 if (board[index][row] === player) {
-                    winCount++;
-                    winMoves.push(String(index) + String(row));
+                    // Account for duplicates
+                    if (index != column && row != lastMove) {
+                        winCount++;
+                        winMoves.push(String(index) + String(row));
+                    }
+                } else {
+                    break;
                 }
             } else {
                 // I've hit the bottom....
                 break;
             }
+            row += 1;
         }
     }
 
