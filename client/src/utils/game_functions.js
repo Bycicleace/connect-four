@@ -196,6 +196,75 @@ function checkDiagonalWinRight(board, columnNumber = -1) {
     // If win, return true, else false.
 
     // go up first. Then, check to see if it's possible to win with what's below
+    let { lastMove, player } = getLastMove(board, columnNumber);
+
+    if (!player) {
+        // column is empty
+        return false;
+    }
+
+    // defined for ease
+    let column = columnNumber;
+    let row = lastMove;
+
+    // Takes into account the move that was just made.
+    let winCount = 1;
+    let winMoves = []
+    winMoves.push(String(column) + String(row));
+
+    // Check up and to the right
+    console.log(`Checking up and to the right`);
+    if (column > 0 && row > 0) {
+        for (let index = column; index >= 0; index--) {
+            console.log(`Checking column ${index}, row ${row}...`);
+            if (row >= 0) {
+                if (board[index][row] === player) {
+                    // Account for duplicates
+                    if (index != column && row != lastMove) {
+                        winCount++;
+                        winMoves.push(String(index) + String(row));
+                    }
+                } else {
+                    break;
+                }
+            } else {
+                // I've hit the top of the board
+                break;
+            }
+            row -= 1;
+        }
+    }
+
+    row = lastMove;
+    // Check down and to the left
+    if (column < 6 && row < 5) {
+        for (let index = column; index <= 6; index++) {
+            // console.log(`Checking column ${index}, row ${row}...`);
+            if (row <= 5) {
+                if (board[index][row] === player) {
+                    // Account for duplicates
+                    if (index != column && row != lastMove) {
+                        winCount++;
+                        // winMoves.push(String(index) + String(row));
+                    }
+                } else {
+                    break;
+                }
+            } else {
+                // I've hit the bottom....
+                break;
+            }
+            row += 1;
+        }
+    }
+
+    if (winCount >= 4) {
+        console.log(true, player, winMoves);
+        return true;
+    } else {
+        console.log(false, player, winMoves);
+        return false;
+    }
 }
 
 function getLastMove(board, columnNumber) {
