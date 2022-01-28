@@ -13,9 +13,9 @@ import Header from './components/Header/Header';
 // import Footer from './components/Footer';
 
 // import Game from './pages/Game';
-import Login from './pages/Login';
-// import Profile from './pages/Profile';
-import Signup from './pages/Signup';
+import Login from './pages/Login/Login';
+import Profile from './pages/Profile/Profile';
+import Signup from './pages/Signup/Signup';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -47,7 +47,7 @@ function App() {
               {/* <Route exact path="/game" component={Game} /> */}
               <Route exact path="/" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              {/* <Route exact path="/profile/:username?" component={Profile} /> */}
+              <Route exact path="/profile/:username?" component={Profile} />
             </Switch>
           </div>
           {/* <Footer /> */}
