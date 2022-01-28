@@ -1,22 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
 // import { Container, Card, CardColumns } from 'react-bootstrap';
 import { useMutation, useQuery } from "@apollo/client";
-import { QUERY_USER, QUERY_GAMES } from "../utils/queries";
-import { JOIN_GAME } from "../utils/mutations";
+import { QUERY_GAMES } from "../../utils/queries";
+import { JOIN_GAME } from "../../utils/mutations";
 
-const ActiveGames = () => {
-  const { username: userParam } = useParams();
-  const { loading, userData } = useQuery(QUERY_USER, {
-    variables: { username: userParam },
-  });
-  const user = userData?.user || {};
-
-  const { loading, gameData } = useQuery(QUERY_GAMES);
+const OpenGames = () => {
+  const { gameData } = useQuery(QUERY_GAMES);
   const games = gameData?.games;
 
   const openGames = games.filter((game) => {
-    game.player2 === "Empty";
+    return game.player2 === "Empty";
   });
 
   const [joinGame] = useMutation(JOIN_GAME);
@@ -29,7 +22,7 @@ const ActiveGames = () => {
     event.preventDefault();
 
     try {
-      await joinGame({
+      joinGame({
         variables: {
           id: gameId,
         },
@@ -58,3 +51,5 @@ const ActiveGames = () => {
     </section>
   );
 };
+
+export default OpenGames;

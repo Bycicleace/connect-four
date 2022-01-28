@@ -16,7 +16,6 @@ import Game from './pages/Game/Game';
 import Login from './pages/Login/Login';
 import Profile from './pages/Profile/Profile';
 import Signup from './pages/Signup/Signup';
-import Signup from './pages/Signup';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',

@@ -61,6 +61,9 @@ const resolvers = {
 
       throw new AuthenticationError("Not Logged In!");
     },
+    deleteGame: async (parent, { gameId }) => {
+      return await Game.findByIdAndDelete({ _id: gameId });
+    },
     updateBoard: async (parent, { gameId, gameBoard, playerTurn }, context) => {
       const game = await Game.findById({ _id: gameId });
       const currentUser = context.user.username;
@@ -94,6 +97,9 @@ const resolvers = {
       }
 
       throw new AuthenticationError("Not logged in");
+    },
+    deleteUser: async (parent, { userId }) => {
+      return await User.findByIdAndDelete({ _id: userId });
     },
     // resolver for logging in user and returning user and signed JWT
     login: async (parent, { email, password }) => {

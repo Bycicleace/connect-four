@@ -1,25 +1,25 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { Container, Card, CardColumns } from 'react-bootstrap';
 import { useQuery } from "@apollo/client";
-import { QUERY_USER, QUERY_GAMES } from "../utils/queries";
+import { QUERY_USER, QUERY_GAMES } from "../../utils/queries";
+import Auth from "../../utils/auth";
 
 const ActiveGames = () => {
-  const { username: userParam } = useParams();
-  const { loading, userData } = useQuery(QUERY_USER, {
-    variables: { username: userParam },
+  const { userData } = useQuery(QUERY_USER, {
+    variables: { id: Auth.getProfile().data._id },
   });
   const user = userData?.user || {};
 
-  const { loading, gameData } = useQuery(QUERY_GAMES);
+  const { gameData } = useQuery(QUERY_GAMES);
   const games = gameData?.games;
 
   const activeGames = games.filter((game) => {
-    game.player1 === user.username || game.player2 === user.username;
+    return game.player1 === user.username || game.player2 === user.username;
   });
 
   if (!activeGames.length) {
-    return <h2> You're not actively in any games</h2>;
+    return <h2>You're not actively in any games</h2>;
   }
 
   return (
