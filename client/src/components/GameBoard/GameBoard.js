@@ -32,11 +32,11 @@ function GameBoard(props) {
                         {column.split('').map(field => {
                             switch (field) {
                                 case '0':
-                                    return (<img id={`gameBoard__${column}${field}`} className='gameBoard__field' src={img0} />)
+                                    return (<img className='gameBoard__field' src={img0} />)
                                 case '1':
-                                    return (<img id={`gameBoard__${column}${field}`} className='gameBoard__field' src={img1} />)
+                                    return (<img className='gameBoard__field' src={img1} />)
                                 case '2':
-                                    return (<img id={`gameBoard__${column}${field}`} className='gameBoard__field' src={img2} />)
+                                    return (<img className='gameBoard__field' src={img2} />)
                             }
                         })}
                     </div>
