@@ -16,9 +16,10 @@ import Game from './pages/Game/Game';
 import Login from './pages/Login/Login';
 // import Profile from './pages/Profile/Profile';
 import Signup from './pages/Signup/Signup';
+import Signup from './pages/Signup';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -44,7 +45,7 @@ function App() {
           <Header />
           <div className="">
             <Switch>
-              <Route exact path="/game" component={Game} />
+              {/* <Route exact path="/game" component={Game} /> */}
               <Route exact path="/" component={Login} />
               <Route exact path="/signup" component={Signup} />
               {/* <Route exact path="/profile/:username?" component={Profile} /> */}

@@ -30,6 +30,7 @@ const gameSchema = new Schema(
         },
         board: {
             type: Array,
+            //right side is bottom
             default: [
                 "000000",
                 "000000",
