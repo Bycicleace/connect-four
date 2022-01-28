@@ -23,20 +23,25 @@ function GameBoard(props) {
         )
     }
     const board = data.game.board;
+    let col = -1;
+    let row = 0;
 
     return (
         <div className='gameBoard__container'>
             {board.map(column => {
+                col += 1;
+                row = -1;
                 return (
-                    <div className='gameBoard__column'>
+                    <div className='gameBoard__column' key={`${col}`}>
                         {column.split('').map(field => {
+                            row += 1;
                             switch (field) {
                                 case '0':
-                                    return (<img className='gameBoard__field' src={img0} />)
+                                    return (<img id={`${col}${row}`} className='gameBoard__field' src={img0} key={`${col}${row}`} />)
                                 case '1':
-                                    return (<img className='gameBoard__field' src={img1} />)
+                                    return (<img id={`${col}${row}`} className='gameBoard__field' src={img1} key={`${col}${row}`} />)
                                 case '2':
-                                    return (<img className='gameBoard__field' src={img2} />)
+                                    return (<img id={`${col}${row}`} className='gameBoard__field' src={img2}  key={`${col}${row}`}/>)
                             }
                         })}
                     </div>
