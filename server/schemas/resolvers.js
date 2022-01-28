@@ -7,11 +7,14 @@ const resolvers = {
     game: async (parent, { _id }) => {
       return Game.findOne({ _id });
     },
+    games: async (parent, args) => {
+      return Game.find();
+    },
     user: async (parent, { _id }) => {
       return User.findOne({ _id });
     },
-    users: async(parent, args)=> {
-      return User.find()
+    users: async (parent, args) => {
+      return User.find();
     }
   },
 
@@ -55,6 +58,26 @@ const resolvers = {
           return game;
         }
       }
+
+      throw new AuthenticationError("Not Logged In!");
+    },
+    updateBoard: async (parent, { gameId, gameBoard, playerTurn }, context) => {
+      const game = await Game.findById({ _id: gameId });
+      const currentUser = context.user.username;
+      if (currentUser === game.player1 || currentUser === game.player2) {
+        return await Game.findByIdAndUpdate(
+          { _id: gameId },
+          {
+            $set: {
+              board: gameBoard,
+              playerTurn: playerTurn,
+            },
+          },
+          { new: true }
+        );
+      }
+
+      throw new AuthenticationError("Not a player of this game!");
     },
     // resolver for adding a user and returning user and signed JWT
     addUser: async (parent, args) => {

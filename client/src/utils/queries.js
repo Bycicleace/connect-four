@@ -1,7 +1,7 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 export const QUERY_USERS = gql`
-  query users {
+  query Users {
     users {
       _id
       username
@@ -13,6 +13,7 @@ export const QUERY_USERS = gql`
         player2
         playerTurn
         board
+      }
     }
   }
 `;
@@ -43,6 +44,7 @@ export const QUERY_GAMES = gql`
       player2
       playerTurn
       board
+    }
   }
 `;
 
@@ -54,11 +56,6 @@ export const QUERY_GAME = gql`
       player2
       playerTurn
       board
-      }
     }
   }
 `;
-
-
-
-

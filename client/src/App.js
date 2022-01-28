@@ -1,5 +1,5 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   ApolloClient,
@@ -9,8 +9,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './components/Header/Header';
+// import Footer from './components/Footer';
 
 // import Game from './pages/Game';
 import Login from './pages/Login';
@@ -40,9 +40,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
+        <div className="">
           <Header />
-          <div className="container">
+          <div className="">
             <Switch>
               {/* <Route exact path="/game" component={Game} /> */}
               <Route exact path="/" component={Login} />
