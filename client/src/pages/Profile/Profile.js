@@ -8,7 +8,7 @@ function Profile() {
         <main className="profile_page">
             <UserBio />
             <ActiveGames />
-            <OpenGames />
+            {/* <OpenGames /> */}
         </main>
     );
 }
