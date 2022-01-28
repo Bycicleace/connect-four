@@ -7,7 +7,7 @@ const Game = () => {
     const gameId = useParams();
     return (
         <section className='game__container'>
-            <GameBoard gameId/>
+            <GameBoard params={gameId}/>
         </section>
     );
 };
