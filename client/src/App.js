@@ -12,9 +12,9 @@ import { setContext } from '@apollo/client/link/context';
 import Header from './components/Header/Header';
 // import Footer from './components/Footer';
 
-import Game from './pages/Game/Game';
+// import Game from './pages/Game';
 import Login from './pages/Login/Login';
-// import Profile from './pages/Profile/Profile';
+import Profile from './pages/Profile/Profile';
 import Signup from './pages/Signup/Signup';
 import Signup from './pages/Signup';
 
@@ -48,7 +48,7 @@ function App() {
               {/* <Route exact path="/game" component={Game} /> */}
               <Route exact path="/" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              {/* <Route exact path="/profile/:username?" component={Profile} /> */}
+              <Route exact path="/profile/:username?" component={Profile} />
             </Switch>
           </div>
           {/* <Footer /> */}
