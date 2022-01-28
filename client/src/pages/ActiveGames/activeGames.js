@@ -14,6 +14,7 @@ const ActiveGames = () => {
     if(!games.length) {
         return <h2> You're not actively in any games</h2>
     }
+    
 
 
  return (

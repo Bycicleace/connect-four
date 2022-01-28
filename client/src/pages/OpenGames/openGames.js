@@ -16,6 +16,7 @@ const OpenGames = () => {
  return (
     <Container>
         {/* map through and render games */}
+       {/* {games.map(game => ( */}
         <CardColumns>
             <Card>
                 <Card.Body>
