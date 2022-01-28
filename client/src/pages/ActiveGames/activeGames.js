@@ -5,22 +5,28 @@ import { JOIN_GAME} from "../utils/mutations"
 import { QUERY_GAMES} from "../utils/queries"
 
 
+const ActiveGames = () => {
 
-const OpenGames = () => {
-    const { loading, data} = useQuery(QUERY_GAMES)
+    const { loading , data} = useQuery(QUERY_GAMES)
     const joinGame = useMutation(JOIN_GAME)
-    const gameData = data?.games
+    const games = data?.games
+
+    if(!games.length) {
+        return <h2> You're not actively in any games</h2>
+    }
+
 
  return (
     <Container>
-        
         <CardColumns>
             <Card>
+                <Card.Body>
 
+                </Card.Body>
             </Card>
         </CardColumns>
     </Container>
  )
 }
 
-export default OpenGames;
+export default ActiveGames;

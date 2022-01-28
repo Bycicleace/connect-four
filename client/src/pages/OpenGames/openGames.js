@@ -5,22 +5,26 @@ import { JOIN_GAME} from "../utils/mutations"
 import { QUERY_GAMES} from "../utils/queries"
 
 
-const ActiveGames = () => {
 
-    const { loading , data} = useQuery(QUERY_GAMES)
+const OpenGames = () => {
+    const { loading, data} = useQuery(QUERY_GAMES)
     const joinGame = useMutation(JOIN_GAME)
-    const gameData = data?.games
+    const games = data?.games
 
+     
 
  return (
     <Container>
+        {/* map through and render games */}
         <CardColumns>
             <Card>
+                <Card.Body>
 
+                </Card.Body>
             </Card>
         </CardColumns>
     </Container>
  )
 }
 
-export default ActiveGames;
+export default OpenGames;
