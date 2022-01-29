@@ -10,7 +10,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Header from './components/Header/Header';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 
 import Game from './pages/Game/Game';
 import Login from './pages/Login/Login';
@@ -50,7 +50,7 @@ function App() {
               <Route exact path="/profile/:username?" component={Profile} />
             </Switch>
           </div>
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>
