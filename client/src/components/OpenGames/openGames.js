@@ -1,13 +1,12 @@
 import React from "react";
 // import { Container, Card, CardColumns } from 'react-bootstrap';
-import { useMutation, useQuery } from "@apollo/client";
-import { QUERY_GAMES } from "../../utils/queries";
+import { useMutation } from "@apollo/client";
+// import { QUERY_GAMES } from "../../utils/queries";
 import { JOIN_GAME } from "../../utils/mutations";
 import "./OpenGames.css";
 
-const OpenGames = () => {
-  const { gameData } = useQuery(QUERY_GAMES);
-  const games = gameData?.games || [];
+const OpenGames = (props) => {
+  const games = props.games || [];
 
   const openGames = games.filter((game) => {
     return game.player2 === "Empty";
