@@ -1,10 +1,30 @@
-import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../../utils/queries";
+import { QUERY_USER, QUERY_GAMES } from '../../utils/queries';
 import Auth from "../../utils/auth";
 import "./UserBio.css";
+import { ADD_GAME } from "../../utils/mutations";
+import { useMutation, useQuery } from "@apollo/client";
 
 const Profile = (props) => {
   const userId = Auth.getProfile().data._id;
+  const [createGame] = useMutation(ADD_GAME);
+const { gameData } = useQuery(QUERY_GAMES);
+const game = gameData?.games;
+
+const handleCreateGame = (event, username) => {
+  event.preventDefault();
+console.log('test')
+  try {
+    createGame({
+      variables: {
+        player1:username,
+      },
+    });
+
+    // window.location.assign('/game/' + gameId);
+  } catch (e) {
+    console.error(e);
+  }
+};
 
   const { loading, data } = useQuery(QUERY_USER, {
     variables: { id: userId },
@@ -26,6 +46,12 @@ const Profile = (props) => {
         //# of completed games?
         // Win percentage? */}
         </div>
+        <button
+              onClick={(e) => handleCreateGame(e,data.user.username)}
+              className="activeGames__card-title"
+            >
+             Create a Game!
+            </button>
       </div>
     </div>
   );

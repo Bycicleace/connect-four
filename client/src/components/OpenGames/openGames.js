@@ -1,7 +1,7 @@
 import React from "react";
 // import { Container, Card, CardColumns } from 'react-bootstrap';
 import { useMutation } from "@apollo/client";
-// import { QUERY_GAMES } from "../../utils/queries";
+import { QUERY_GAMES } from "../../utils/queries";
 import { JOIN_GAME } from "../../utils/mutations";
 import "./OpenGames.css";
 
@@ -40,7 +40,7 @@ const OpenGames = (props) => {
         {openGames.map((game) => (
           <div className="openGames__card">
             <button
-              onClick={handleJoinGame(game.id)}
+              onClick={(e)=>handleJoinGame(e,game.id)}
               className="activeGames__card-title"
             >
               {game.player1}
