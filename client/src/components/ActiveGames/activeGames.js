@@ -12,7 +12,7 @@ const ActiveGames = () => {
   const user = userData?.user || {};
 
   const { gameData } = useQuery(QUERY_GAMES);
-  const games = gameData?.games;
+  const games = gameData?.games || [];
 
   const activeGames = games.filter((game) => {
     return game.player1 === user.username || game.player2 === user.username;

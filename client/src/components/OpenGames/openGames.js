@@ -6,7 +6,7 @@ import { JOIN_GAME } from "../../utils/mutations";
 
 const OpenGames = () => {
   const { gameData } = useQuery(QUERY_GAMES);
-  const games = gameData?.games;
+  const games = gameData?.games || [];
 
   const openGames = games.filter((game) => {
     return game.player2 === "Empty";
