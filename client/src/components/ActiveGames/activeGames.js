@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_GAMES } from "../../utils/queries";
 import Auth from "../../utils/auth";
+import "./ActiveGames.css";
 
 const ActiveGames = () => {
   const { userData } = useQuery(QUERY_USER, {

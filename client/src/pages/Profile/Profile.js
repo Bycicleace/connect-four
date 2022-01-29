@@ -1,16 +1,17 @@
-import React from 'react';
-import UserBio from '../../components/UserBio/UserBio';
-import ActiveGames from '../../components/ActiveGames/ActiveGames';
-import OpenGames from '../../components/OpenGames/OpenGames';
+import React from "react";
+import UserBio from "../../components/UserBio/UserBio";
+import ActiveGames from "../../components/ActiveGames/ActiveGames";
+import OpenGames from "../../components/OpenGames/OpenGames";
+import "./Profile.css";
 
 function Profile() {
-    return (
-        <main className="profile_page">
-            <UserBio />
-            <ActiveGames />
-            <OpenGames />
-        </main>
-    );
+  return (
+    <main className="profile_page">
+      <UserBio />
+      <ActiveGames />
+      <OpenGames />
+    </main>
+  );
 }
 
 export default Profile;

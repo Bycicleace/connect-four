@@ -3,6 +3,7 @@ import React from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_GAMES } from "../../utils/queries";
 import { JOIN_GAME } from "../../utils/mutations";
+import "./OpenGames.css";
 
 const OpenGames = () => {
   const { gameData } = useQuery(QUERY_GAMES);
@@ -28,7 +29,7 @@ const OpenGames = () => {
         },
       });
 
-      window.location.assign('/game/' + gameId);
+      window.location.assign("/game/" + gameId);
     } catch (e) {
       console.error(e);
     }

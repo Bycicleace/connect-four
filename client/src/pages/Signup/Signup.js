@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../utils/mutations';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../../utils/mutations";
+import "./Signup.css";
 
-import Auth from '../../utils/auth';
+import Auth from "../../utils/auth";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
   const [addUser, { error }] = useMutation(ADD_USER);
 
@@ -32,8 +33,8 @@ const Signup = () => {
       });
 
       Auth.login(data.addUser.token);
-      console.log(data.addUser.token)
-      console.log(data.addUser.user.username)
+      console.log(data.addUser.token);
+      console.log(data.addUser.user.username);
     } catch (e) {
       console.error(e);
     }
