@@ -7,9 +7,9 @@ import Auth from "../../utils/auth";
 import "./Game.css";
 
 const Game = () => {
-  const gameId = useParams();
+  const params = useParams();
   const { loading, data } = useQuery(QUERY_GAME, {
-      variables: { id: Auth.getProfile().data._id}
+      variables: { id: params.gameId }
   })
 
   if (loading) {
@@ -18,6 +18,7 @@ const Game = () => {
       );
   };
 
+  console.log(data);
   const board = data?.game?.board;
 
 

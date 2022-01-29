@@ -9,17 +9,8 @@ const img2 = require("../../assets/board/2.png");
 function GameBoard(props) {
   // Get game ID from prop passing
   const { params } = props;
-  const gameId = params.gameId;
-
-  // Get the board from the query
-  const { loading, data } = useQuery(QUERY_GAME, {
-    variables: { id: gameId },
-  });
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  const board = data.game.board;
+  console.log(params);
+  const board = params;
   let col = -1;
   let row = 0;
 
