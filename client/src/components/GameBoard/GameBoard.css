@@ -1,0 +1,14 @@
+.gameBoard__container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    border: 5px solid yellow;
+    border-radius: 5px;
+    box-shadow: -5px 5px 5px black;
+}
+
+.gameBoard__column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
