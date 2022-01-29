@@ -25,7 +25,7 @@ const resolvers = {
         const game = await Game.create({ player1: context.user.username });
 
         await User.findByIdAndUpdate(context.user._id, {
-          $push: { games: game },
+          $push: { games: game._id },
         });
 
         return game;
@@ -42,14 +42,18 @@ const resolvers = {
         if (game.isFull === false) {
           const updatedGame = await Game.findByIdAndUpdate(
             { _id: gameId },
-            { $set: { player2: context.user.username } },
+            { $set: {
+                player2: context.user.username,
+                isFull: true
+              }
+            },
             { new: true }
           );
 
           await User.findByIdAndUpdate(
             { _id: context.user._id },
-            { $push: { games: updatedGame } },
-            { new: true, runValidators: true }
+            { $push: { games: updatedGame._id } },
+            { new: true }
           );
 
           return updatedGame;
