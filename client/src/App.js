@@ -12,10 +12,17 @@ import { setContext } from '@apollo/client/link/context';
 import Header from './components/Header/Header';
 // import Footer from './components/Footer';
 
+<<<<<<< HEAD
 // import Game from './pages/Game';
 import Login from './pages/Login';
 // import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+=======
+import Game from './pages/Game/Game';
+import Login from './pages/Login/Login';
+import Profile from './pages/Profile/Profile';
+import Signup from './pages/Signup/Signup';
+>>>>>>> 53ed4cf3117a318d7fcfef221f8382f13f83a4e2
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -44,10 +51,10 @@ function App() {
           <Header />
           <div className="">
             <Switch>
-              {/* <Route exact path="/game" component={Game} /> */}
+              <Route exact path="/game/:gameId" component={Game} />
               <Route exact path="/" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              {/* <Route exact path="/profile/:username?" component={Profile} /> */}
+              <Route exact path="/profile/:username?" component={Profile} />
             </Switch>
           </div>
           {/* <Footer /> */}

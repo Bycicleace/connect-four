@@ -1,10 +1,15 @@
-import React from 'react';
-
+import React from "react";
+import GameBoard from "../../components/GameBoard/GameBoard";
+import { useParams } from "react-router-dom";
+import "./Game.css";
 
 const Game = () => {
-    <main>
-        
-    </main>
-}
+  const gameId = useParams();
+  return (
+    <section className="game__container">
+      <GameBoard params={gameId} />
+    </section>
+  );
+};
 
 export default Game;

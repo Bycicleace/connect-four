@@ -34,3 +34,9 @@
     border: 2px solid yellow;
     border-radius: 5px;
 }
+
+.header__link:hover {
+    background-color: yellow;
+    color: blue;
+    border-color: black;
+}
