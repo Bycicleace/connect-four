@@ -5,6 +5,7 @@ const typeDefs = gql`
     _id: ID
     player1: String!
     player2: String
+    isFull: String
     playerTurn: Int
     board: [String]
   }

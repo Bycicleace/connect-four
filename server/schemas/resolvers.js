@@ -49,7 +49,7 @@ const resolvers = {
           await User.findByIdAndUpdate(
             { _id: context.user._id },
             { $push: { games: updatedGame } },
-            { new: true, runValidators: true }
+            { new: true }
           );
 
           return updatedGame;
