@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_GAMES } from "../../utils/queries";
 import Auth from "../../utils/auth";
+import "./ActiveGames.css";
 
 const ActiveGames = () => {
   const { userData } = useQuery(QUERY_USER, {
@@ -12,7 +13,7 @@ const ActiveGames = () => {
   const user = userData?.user || {};
 
   const { gameData } = useQuery(QUERY_GAMES);
-  const games = gameData?.games;
+  const games = gameData?.games || [];
 
   const activeGames = games.filter((game) => {
     return game.player1 === user.username || game.player2 === user.username;
