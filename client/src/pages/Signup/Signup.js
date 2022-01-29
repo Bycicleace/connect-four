@@ -31,7 +31,8 @@ const Signup = () => {
       const { data } = await addUser({
         variables: { ...formState },
       });
-
+      window.location.assign("/Profile/");
+      
       Auth.login(data.addUser.token);
       console.log(data.addUser.token);
       console.log(data.addUser.user.username);

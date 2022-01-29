@@ -9,7 +9,7 @@ import "./Game.css";
 const Game = () => {
   const params = useParams();
   const { loading, data } = useQuery(QUERY_GAME, {
-      variables: { id: params.gameId }
+      variables: { id:params.gameId}
   })
 
   if (loading) {

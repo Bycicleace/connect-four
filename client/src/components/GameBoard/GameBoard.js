@@ -9,7 +9,6 @@ const img2 = require("../../assets/board/2.png");
 function GameBoard(props) {
   // Get game ID from prop passing
   const { params } = props;
-  console.log(params);
   const board = params;
   let col = -1;
   let row = 0;

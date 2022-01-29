@@ -40,7 +40,7 @@ const OpenGames = (props) => {
         {openGames.map((game) => (
           <div className="openGames__card">
             <button
-              onClick={handleJoinGame(game.id)}
+              onClick={(e)=> handleJoinGame(e, game._id)}
               className="activeGames__card-title"
             >
               {game.player1}
