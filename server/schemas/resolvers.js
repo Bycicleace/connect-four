@@ -52,11 +52,7 @@ const resolvers = {
 
           await User.findByIdAndUpdate(
             { _id: context.user._id },
-<<<<<<< HEAD
-            { $push: { games: updatedGame } },
-=======
             { $push: { games: updatedGame._id } },
->>>>>>> 7bf88210bc9b649135ea2a108dbdfa6e8f8acad8
             { new: true }
           );
 
