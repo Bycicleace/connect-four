@@ -7,8 +7,8 @@ function Profile() {
     return (
         <main className="profile_page">
             <UserBio />
-            <ActiveGames />
-            {/* <OpenGames /> */}
+            {/* <ActiveGames />
+            <OpenGames /> */}
         </main>
     );
 }
