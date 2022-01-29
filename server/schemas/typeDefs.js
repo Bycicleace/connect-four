@@ -5,6 +5,7 @@ const typeDefs = gql`
     _id: ID
     player1: String!
     player2: String
+    isFull: String
     playerTurn: Int
     board: [String]
   }
@@ -14,7 +15,7 @@ const typeDefs = gql`
     username: String
     email: String
     wins: Int
-    games: [Game]
+    games: [String]
   }
 
   type Auth {

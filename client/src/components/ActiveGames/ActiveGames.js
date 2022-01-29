@@ -1,19 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { Container, Card, CardColumns } from 'react-bootstrap';
 import { useQuery } from "@apollo/client";
-import { QUERY_USER, QUERY_GAMES } from "../../utils/queries";
+import { QUERY_USER } from "../../utils/queries";
 import Auth from "../../utils/auth";
 import "./ActiveGames.css";
 
-const ActiveGames = () => {
-  const { userData } = useQuery(QUERY_USER, {
+const ActiveGames = (props) => {
+  const { data } = useQuery(QUERY_USER, {
     variables: { id: Auth.getProfile().data._id },
   });
-  const user = userData?.user || {};
+  const user = data?.user || {};
 
-  const { gameData } = useQuery(QUERY_GAMES);
-  const games = gameData?.games || [];
+  const games = props.games;
+  console.log(games);
 
   const activeGames = games.filter((game) => {
     return game.player1 === user.username || game.player2 === user.username;
@@ -27,8 +26,8 @@ const ActiveGames = () => {
     <section>
       <div className="activeGames__card-container">
         {activeGames.map((game) => (
-          <div className="activeGames__card">
-            <Link to={`/game/` + game.id} className="activeGames__card-title">
+          <div key={game._id} className="activeGames__card">
+            <Link to={`/game/` + game._id} className="activeGames__card-title">
               {user.username === game.player1 ? game.player2 : game.player1}
             </Link>
           </div>
