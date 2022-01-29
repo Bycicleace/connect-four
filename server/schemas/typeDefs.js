@@ -15,7 +15,7 @@ const typeDefs = gql`
     username: String
     email: String
     wins: Int
-    games: [Game]
+    games: [String]
   }
 
   type Auth {

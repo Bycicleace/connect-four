@@ -4,14 +4,15 @@ import Auth from "../../utils/auth";
 import "./UserBio.css";
 
 const Profile = (props) => {
-  console.log(Auth.getProfile().data._id);
+  const userId = Auth.getProfile().data._id;
+
   const { loading, data } = useQuery(QUERY_USER, {
-    variables: { id: Auth.getProfile().data._id },
+    variables: { id: userId },
   }); //where do we get the id for after Query user?
 
   if (loading) {
     return <div>Loading...</div>;
-  }
+  };
 
   return (
     <div>
