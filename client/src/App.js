@@ -1,5 +1,5 @@
 import React from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   ApolloClient,
@@ -40,9 +40,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="">
+        <div className="app__container">
           <Header />
-          <div className="">
+          <div>
             <Switch>
               <Route exact path="/game/:gameId" component={Game} />
               <Route exact path="/" component={Login} />
