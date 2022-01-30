@@ -41,46 +41,53 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-md-6 main-card">
-        <div className="card">
-          <h4 className="card-header">Sign Up</h4>
-          <div className="card-body">
-            <form onSubmit={handleFormSubmit}>
-              <input
-                className="form-input"
-                placeholder="Your username"
-                name="username"
-                type="username"
-                id="username"
-                value={formState.username}
-                onChange={handleChange}
-              />
-              <input
-                className="form-input"
-                placeholder="Your email"
-                name="email"
-                type="email"
-                id="email"
-                value={formState.email}
-                onChange={handleChange}
-              />
-              <input
-                className="form-input"
-                placeholder="******"
-                name="password"
-                type="password"
-                id="password"
-                value={formState.password}
-                onChange={handleChange}
-              />
-              <button className="btn d-block w-100" type="submit">
-                Submit
-              </button>
-            </form>
+    <main className="signup__main">
+      <div className="signup__card">
+        <h4 className="signup__card-header">Sign Up to Play!</h4>
+        <div className="signup__card-body">
+          <form onSubmit={handleFormSubmit} className="signup__form">
+            <label htmlFor="username" className="signup__form-input-label">
+              Username:
+            </label>
+            <input
+              className="signup__form-input"
+              placeholder="Enter Username"
+              name="username"
+              type="username"
+              id="username"
+              value={formState.username}
+              onChange={handleChange}
+            />
+            <label htmlFor="email" className="signup__form-input-label">
+              Email:
+            </label>
+            <input
+              className="signup__form-input"
+              placeholder="Enter Email"
+              name="email"
+              type="email"
+              id="email"
+              value={formState.email}
+              onChange={handleChange}
+            />
+            <label htmlFor="email" className="signup__form-input-label">
+              Password:
+            </label>
+            <input
+              className="signup__form-input"
+              placeholder="Enter Password"
+              name="password"
+              type="password"
+              id="password"
+              value={formState.password}
+              onChange={handleChange}
+            />
+            <button className="signup__button" type="submit">
+              Sign Up
+            </button>
+          </form>
 
-            {error && <div>Signup failed</div>}
-          </div>
+          {error && <div>Signup failed</div>}
         </div>
       </div>
     </main>

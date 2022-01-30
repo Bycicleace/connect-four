@@ -42,39 +42,43 @@ const Login = (props) => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4 page-body">
-      <div className="col-12 col-md-6 main-card">
-        <div className="card">
-          <h4 className="card-header">Login</h4>
-          <div className="card-body">
-            <form onSubmit={handleFormSubmit}>
+    <main className="login__main">
+        <div className="login__card">
+          <h4 className="login__card-header">Login to Play!</h4>
+          <div className="login__card-body">
+            <form onSubmit={handleFormSubmit} className="login__form">
+              <label htmlFor="email" className="login__form-input-label">
+                Email:
+              </label>
               <input
-                className="form-input"
-                placeholder="Your email"
+                className="login__form-input"
+                placeholder="Enter Email"
                 name="email"
                 type="email"
                 id="email"
                 value={formState.email}
                 onChange={handleChange}
               />
+              <label htmlFor="password" className="login__form-input-label">
+                Password:
+              </label>
               <input
-                className="form-input"
-                placeholder="******"
+                className="login__form-input"
+                placeholder="Enter Password"
                 name="password"
                 type="password"
                 id="password"
                 value={formState.password}
                 onChange={handleChange}
               />
-              <button className="btn d-block w-100" type="submit">
-                Submit
+              <button className="login__button" type="submit">
+                Login
               </button>
             </form>
 
             {error && <div>Login failed</div>}
           </div>
         </div>
-      </div>
     </main>
   );
 };

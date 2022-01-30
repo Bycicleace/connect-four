@@ -18,10 +18,10 @@ const Header = () => {
       </div>
       <nav className="header__nav">
         <Link to="/" className="header__link">
-          Login
+          LOGIN
         </Link>
         <Link to="/signup" className="header__link">
-          Signup
+          SIGNUP
         </Link>
       </nav>
     </header>
