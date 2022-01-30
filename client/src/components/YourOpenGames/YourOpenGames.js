@@ -21,16 +21,7 @@ const YourOpenGames = (props) => {
       }
     return (
         <section>
-            <h1>Your Open Games</h1>
-
-            {yourOpenGames.map((game) => (
-                <div className="YourOpenGames__card">
-                    <div>
-                        {game.player1}
-                    </div>
-
-                </div>
-            ))}
+            <h1>You have {yourOpenGames.length} game(s) open!</h1>
         </section >
     )
 }
