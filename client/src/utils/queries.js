@@ -41,6 +41,7 @@ export const QUERY_GAME = gql`
       _id
       player1
       player2
+      isFull
       playerTurn
       board
     }
