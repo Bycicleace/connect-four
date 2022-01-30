@@ -24,6 +24,7 @@ const ActiveGames = (props) => {
 
   return (
     <section>
+      <h1>Current Active Games!</h1>
       <div className="activeGames__card-container">
         {activeGames.map((game) => (
           <div key={game._id} className="activeGames__card">
