@@ -52,17 +52,16 @@ const OpenGames = (props) => {
   return (
     <section className="openGames__container">
 
-      <h1 className="openGames__header">Join a Game!</h1>
+      <h1 className="openGames__header">Join a Game Against:</h1>
       <div className="openGames__card-container">
         {openGames.map((game) => (
-          <div className="openGames__card">
             <button
+              key={game._id}
               onClick={(e)=> handleJoinGame(e, game._id)}
-              className="openGames__card-title"
+              className="openGames__card"
             >
               {game.player1}
             </button>
-          </div>
         ))}
       </div>
     </section>

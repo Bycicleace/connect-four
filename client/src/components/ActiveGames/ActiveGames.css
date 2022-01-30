@@ -1,7 +1,7 @@
 
 .activeGames__container {
     margin-top: 20px;
-    padding: 0 20px 10px 20px;
+    padding: 0 20px 15px 20px;
     background-color: red;
     display: flex;
     flex-direction: column;
@@ -15,8 +15,13 @@
     text-align: center;
 }
 
+.activeGames__card-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .activeGames__card {
-    margin: 5px;
+    margin-bottom: 5px;
     padding: 0 5px 5px 5px;
     box-shadow: -3px 3px 5px black;
     width: auto;
@@ -24,15 +29,26 @@
     background-color: blue;
     border: 3px solid yellow;
     border-radius: 10px;
-}
-
-.activeGames__card-title {
     text-decoration: none;
     text-align: center;
     font-size: 1.25rem;
     font-weight: 600;
     text-shadow: -3px 3px 10px black;
     color: yellow;
+}
+
+.activeGames__card:hover {
+    background-color: yellow;
+    border-color: black;
+    color: blue;
+    text-shadow: none;
+}
+
+.activeGames__card-title:active {
+    background-color: orange;
+    color: blue;
+    border-color: black;
+    text-shadow: none;
 }
 
 @media screen and (max-width: 425px) {

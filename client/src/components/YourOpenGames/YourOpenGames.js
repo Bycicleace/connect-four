@@ -33,11 +33,9 @@ const YourOpenGames = (props) => {
                 <h2 className="yourOpenGames__header">
                     Games Awaiting Opponent:
                 </h2>
-                {yourOpenGames.map((game) => (
-                    <h3 key={game._id} className="yourOpenGames__text">
-                        Opponent: {user.username === game.player1 ? game.player2 : game.player1}
-                    </h3>
-                ))}
+                <h3 className="yourOpenGames__text">
+                    {yourOpenGames.length}
+                </h3>
             </div>
         )
     }

@@ -14,23 +14,31 @@ const ActiveGames = (props) => {
   const games = props.games;
 
   const activeGames = games.filter((game) => {
-    return game.player1 === user.username || game.player2 === user.username;
+    return (game.player1 === user.username && game.player2 != "Empty") || game.player2 === user.username;
   });
 
   if (!activeGames.length) {
-    return <h2>You're not actively in any games</h2>;
+    return (
+    
+      <section className="openGames__container">
+        <h1 className="openGames__title">
+          Active Games:
+        </h1>
+        <h2 className="openGames__sub-title">
+          You're not actively in any games
+        </h2>
+      </section>
+    )
   }
 
   return (
     <section className="activeGames__container">
       <h1 className="activeGames__header">Current Active Games:</h1>
-      <div>
+      <div className="activeGames__card-container">
         {activeGames.map((game) => (
-          <div key={game._id} className="activeGames__card">
-            <Link to={`/game/` + game._id} className="activeGames__card-title">
+            <Link key={game._id} to={`/game/` + game._id} className="activeGames__card">
               {user.username === game.player1 ? game.player2 : game.player1}
             </Link>
-          </div>
         ))}
       </div>
     </section>
