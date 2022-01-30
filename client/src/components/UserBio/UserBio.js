@@ -12,14 +12,13 @@ const game = gameData?.games;
 
 const handleCreateGame = (event, username) => {
   event.preventDefault();
-
   try {
     createGame({
       variables: {
         player1:username,
       },
     });
-    
+    window.location.reload();
   } catch (e) {
     console.error(e);
   }
@@ -40,7 +39,7 @@ const handleCreateGame = (event, username) => {
         <div>
           <h3>Statistics </h3>
           <p>Wins: {`${data.user.wins}`}</p>
-          {/* // # of active games?
+          {/* 
         // # of games completed?
         //# of completed games?
         // Win percentage? */}
