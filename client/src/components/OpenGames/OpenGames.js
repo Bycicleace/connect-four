@@ -21,8 +21,17 @@ console.log(games);
   const [joinGame] = useMutation(JOIN_GAME);
 
   if (!openGames.length) {
-    return <h2>There are no open games! Consider making one!</h2>;
-  }
+    return (
+      <section className="openGames__container">
+        <h1 className="openGames__title">
+          There are no open games!
+        </h1>
+        <h2 className="openGames__sub-title">
+          Consider making one!
+        </h2>
+      </section>
+    )
+  };
 
   const handleJoinGame = (event, gameId) => {
     event.preventDefault();
@@ -41,9 +50,9 @@ console.log(games);
   };
 
   return (
-    <section>
+    <section className="openGames__container">
 
-      <h1>Join a Game!</h1>
+      <h1 className="openGames__header">Join a Game!</h1>
       <div className="openGames__card-container">
         {openGames.map((game) => (
           <div className="openGames__card">

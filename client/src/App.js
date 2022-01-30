@@ -40,17 +40,19 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="app__container">
-          <Header />
-          <div>
-            <Switch>
-              <Route exact path="/game/:gameId" component={Game} />
-              <Route exact path="/" component={Login} />
-              <Route exact path="/signup" component={Signup} />
-              <Route exact path="/profile/:username?" component={Profile} />
-            </Switch>
+        <div className="app__body">
+          <div className="app__container">
+            <Header />
+            <div>
+              <Switch>
+                <Route exact path="/game/:gameId" component={Game} />
+                <Route exact path="/" component={Login} />
+                <Route exact path="/signup" component={Signup} />
+                <Route exact path="/profile/:username?" component={Profile} />
+              </Switch>
+            </div>
+            <Footer />
           </div>
-          <Footer />
         </div>
       </Router>
     </ApolloProvider>

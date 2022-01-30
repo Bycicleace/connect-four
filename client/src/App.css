@@ -1,16 +1,30 @@
 body {
   height: 100%;
   background-color: blue;
-  margin: 5px;
 }
 
 html {
   height: 100vh;
 }
 
+.app__body {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  background-color: lightslategrey;
+}
+
 .app__container {
+  background-color: blue;
+  width: 1024px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 1024px) {
+  .app__container {
+    width: 100vw;
+  }   
 }

@@ -1,1 +1,46 @@
+.openGames__container {
+    margin-top: 20px;
+    padding: 0 20px;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid black;
+    border-radius: 15px;
+    box-shadow: -3px 3px 10px yellow;
+}
 
+.openGames__title {
+    text-align: center;
+}
+
+.openGames__sub-title {
+    margin-top: 0;
+    font-size: 1.25rem;
+}
+
+.openGames__card {
+    margin: 5px;
+    padding: 0 5px 5px 5px;
+    box-shadow: -3px 3px 5px black;
+    width: auto;
+    height: auto;
+    background-color: blue;
+    border: 3px solid yellow;
+    border-radius: 10px;
+}
+
+.openGames__card-title {
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-shadow: -3px 3px 10px black;
+    color: yellow;
+}
+
+@media screen and (max-width: 425px) {
+    .openGames__container {
+        width: 80%;
+    }
+}

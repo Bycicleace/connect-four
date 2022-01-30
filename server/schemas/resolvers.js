@@ -34,7 +34,6 @@ const resolvers = {
       throw new AuthenticationError("Not Logged In!");
     },
     joinGame: async (parent, { gameId }, context) => {
-      console.log(context.user);
 
       if (context.user) {
         const game = await Game.findById({ _id: gameId });

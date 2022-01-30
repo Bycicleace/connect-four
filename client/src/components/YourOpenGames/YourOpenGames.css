@@ -1,0 +1,30 @@
+.yourOpenGames__container {
+    margin-top: 20px;
+    padding: 0 20px;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid black;
+    border-radius: 15px;
+    box-shadow: -3px 3px 10px yellow;
+}
+
+.yourOpenGames__header {
+    text-align: center;
+}
+
+.yourOpenGames__sub-title {
+    text-align: center;
+    margin-top: 0;
+}
+
+.yourOpenGames__text {
+    text-align: center;
+}
+
+@media screen and (max-width: 425px) {
+    .yourOpenGames__container {
+        width: 80%;
+    }
+}

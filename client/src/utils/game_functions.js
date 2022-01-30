@@ -330,7 +330,6 @@ function displayBoard(board) {
         for (let colNum = 6; colNum >= 0; colNum--) {
             row += board[colNum][rowNum];
         }
-        console.log(row);
     }
     
 }

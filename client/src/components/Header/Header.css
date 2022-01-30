@@ -1,4 +1,6 @@
 .header__container {
+    border: 7px solid yellow;
+    border-radius: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;

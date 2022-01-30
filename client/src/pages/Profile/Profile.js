@@ -10,14 +10,13 @@ import "./Profile.css";
 function Profile() {
   const { data } = useQuery(QUERY_GAMES);
   const games = data?.games || [];
-  console.log(games);
 
   return (
-    <main className="profile_page">
+    <main className="profile__page">
       <UserBio />
       <ActiveGames games={games} />
-      <OpenGames games={games} />
       <YourOpenGames games={games} />
+      <OpenGames games={games} />
     </main>
   );
 }

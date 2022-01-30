@@ -1,4 +1,6 @@
 .footer__container {
+    border: 7px solid yellow;
+    border-radius: 5px;
     font-size: 1.5rem;
     font-weight: 700;
     text-shadow: -3px 3px 5px black;

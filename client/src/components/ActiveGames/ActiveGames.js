@@ -12,7 +12,6 @@ const ActiveGames = (props) => {
   const user = data?.user || {};
 
   const games = props.games;
-  console.log(games);
 
   const activeGames = games.filter((game) => {
     return game.player1 === user.username || game.player2 === user.username;
@@ -23,9 +22,9 @@ const ActiveGames = (props) => {
   }
 
   return (
-    <section>
-      <h1>Current Active Games!</h1>
-      <div className="activeGames__card-container">
+    <section className="activeGames__container">
+      <h1 className="activeGames__header">Current Active Games:</h1>
+      <div>
         {activeGames.map((game) => (
           <div key={game._id} className="activeGames__card">
             <Link to={`/game/` + game._id} className="activeGames__card-title">

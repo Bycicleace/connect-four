@@ -1,0 +1,67 @@
+.userBio__container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+}
+
+.userBio__bio-card {
+    padding: 20px;
+    width: 100%;
+    background-color: red;
+    border: 5px solid black;
+    box-shadow: -3px 3px 10px yellow;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userBio__usernameHeader {
+    margin: 0 0 15px 0;
+    padding: 5px 15px;
+    font-size: 2rem;
+    text-shadow: -2px 2px 5px black;
+    border: 3px solid yellow;
+    border-radius: 15px;
+    box-shadow: -3px 3px 5px black;
+}
+
+.userBio__stats-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userBio__stats-header {
+    margin: 0;
+    padding: 0;
+    text-shadow: -1px 1px 5px black;
+}
+
+.userBio__stats-text {
+    font-weight: 600;
+    text-shadow: -1px 1px 3px black;
+}
+
+.userBio__button {
+    margin-top: 15px;
+    padding: 5px 15px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-shadow: -3px 3px 10px black;
+    box-shadow: -3px 3px 5px black;
+    width: auto;
+    height: auto;
+    background-color: blue;
+    color: yellow;
+    border: 3px solid yellow;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 425px) {
+    .userBio__container {
+        width: 80%;
+    }
+}

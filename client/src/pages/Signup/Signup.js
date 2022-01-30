@@ -34,9 +34,7 @@ const Signup = () => {
       window.location.assign("/Profile/");
       
       Auth.login(data.addUser.token);
-      console.log(data.addUser.token)
-      console.log(data.addUser.user.username)
-      window.location.assign('/profile/')
+      window.location.assign('/profile/');
     } catch (e) {
       console.error(e);
     }

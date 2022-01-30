@@ -1,28 +1,26 @@
-import { QUERY_USER, QUERY_GAMES } from '../../utils/queries';
+import { QUERY_USER } from "../../utils/queries";
 import Auth from "../../utils/auth";
 import "./UserBio.css";
 import { ADD_GAME } from "../../utils/mutations";
 import { useMutation, useQuery } from "@apollo/client";
 
-const Profile = (props) => {
+const UserBio = (props) => {
   const userId = Auth.getProfile().data._id;
   const [createGame] = useMutation(ADD_GAME);
-const { gameData } = useQuery(QUERY_GAMES);
-const game = gameData?.games;
 
-const handleCreateGame = (event, username) => {
-  event.preventDefault();
-  try {
-    createGame({
-      variables: {
-        player1:username,
-      },
-    });
-    window.location.reload();
-  } catch (e) {
-    console.error(e);
-  }
-};
+  const handleCreateGame = (event, username) => {
+    event.preventDefault();
+    try {
+      createGame({
+        variables: {
+          player1: username,
+        },
+      });
+      window.location.reload();
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   const { loading, data } = useQuery(QUERY_USER, {
     variables: { id: userId },
@@ -30,28 +28,28 @@ const handleCreateGame = (event, username) => {
 
   if (loading) {
     return <div>Loading...</div>;
-  };
+  }
 
   return (
-    <div>
-      <div>
-        <h2 className="userNameHeader">{`${data.user.username}`}</h2>
-        <div>
-          <h3>Statistics </h3>
-          <p>Wins: {`${data.user.wins}`}</p>
+    <div className="userBio__container">
+      <div className="userBio__bio-card">
+        <h2 className="userBio__usernameHeader">{`${data.user.username}`}</h2>
+        <div className="userBio__stats-container">
+          <h3 className="userBio__stats-header">Statistics </h3>
+          <p className="userBio__stats-text">Wins: {`${data.user.wins}`}</p>
           {/* 
         // # of games completed?
         //# of completed games?
         // Win percentage? */}
         </div>
         <button
-              onClick={(e) => handleCreateGame(e,data.user.username)}
-              className="activeGames__card-title"
-            >
-             Create a Game!
-            </button>
+          onClick={(e) => handleCreateGame(e, data.user.username)}
+          className="userBio__button"
+        >
+          Create a Game!
+        </button>
       </div>
     </div>
   );
 };
-export default Profile;
+export default UserBio;
