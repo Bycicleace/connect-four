@@ -17,8 +17,7 @@ const Game = () => {
           <div>Loading....</div>
       );
   };
-
-  console.log(data);
+  
   const board = data?.game?.board;
 
 

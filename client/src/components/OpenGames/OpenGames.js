@@ -13,7 +13,7 @@ const OpenGames = (props) => {
   });
 
   const user = data?.user || {};
-console.log(games);
+  
   const openGames = games.filter((game) => {
     return game.player2 === "Empty" && game.player1 !== user.username;
   });
