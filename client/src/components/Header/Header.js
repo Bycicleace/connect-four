@@ -12,10 +12,10 @@ const Header = () => {
 
   return (
     <header className="header__container">
-      <div className="header__banner">
-        <img src={Logo} alt="Connect-4 logo" className="header__img"></img>
-        <h1 className="header__title">Connect-4</h1>
-      </div>
+        <Link to="/" className="header__banner">
+          <img src={Logo} alt="Connect-4 logo" className="header__img"></img>
+          <p className="header__title">Connect-4</p>
+        </Link>
       <nav className="header__nav">
         {!Auth.loggedIn() ?
           (<div>
