@@ -7,7 +7,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { useState } from "react";
 import Auth from "../../utils/auth";
 import "./Game.css";
-import { checkCatsGame, checkWinner, makeMove } from "../../utils/game_functions";
+import { checkFullBoard, checkWinner, makeMove } from "../../utils/game_functions";
 
 const Game = () => {
   const params = useParams();
@@ -35,7 +35,7 @@ const Game = () => {
               checkWinner(board, 4) ||
               checkWinner(board, 5) ||
               checkWinner(board, 6);
-  let isCatsGame = checkCatsGame(board);
+  let isCatsGame = checkFullBoard(board);
   if (isCatsGame) {
     isWon = true;
   }
@@ -71,7 +71,7 @@ const Game = () => {
       nextTurn = currentPlayerNumber;
       isWon = true;
     }
-    if (checkCatsGame(board) && !isWon) {
+    if (checkFullBoard(board) && !isWon) {
       isCatsGame = true;
       isWon = true;
       nextTurn = currentPlayerNumber;

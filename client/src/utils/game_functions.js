@@ -322,7 +322,7 @@ function getAvailableSpot(columnArray) {
     return row;
 }
 
-function checkCatsGame(board) {
+function checkFullBoard(board) {
     if (!isColumnOpen(board[0]) &&
         !isColumnOpen(board[1]) &&
         !isColumnOpen(board[2]) &&
@@ -350,6 +350,6 @@ function checkCatsGame(board) {
 
 module.exports = {
     checkWinner,
-    checkCatsGame,
+    checkFullBoard,
     makeMove
 }
