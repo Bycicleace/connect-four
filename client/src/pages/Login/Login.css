@@ -62,8 +62,15 @@
     border-radius: 10px;
 }
 
-.login__button:hover, .login__button:active {
+.login__button:hover {
     background-color: yellow;
+    color: blue;
+    border-color: black;
+    text-shadow: none;
+}
+
+.login__button:active {
+    background-color: orange;
     color: blue;
     border-color: black;
     text-shadow: none;

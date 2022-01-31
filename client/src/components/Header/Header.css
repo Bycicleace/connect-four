@@ -52,7 +52,7 @@
 }
 
 .header__link:active {
-    background-color: yellow;
+    background-color: orange;
     color: blue;
     border-color: black;
 }
