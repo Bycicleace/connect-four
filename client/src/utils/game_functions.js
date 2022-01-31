@@ -56,7 +56,7 @@ function checkVerticalWin(board, columnNumber) {
     } else {
         let hasWon = true;
         for (let index = lastMove; index < board[columnNumber].length; index++) {
-            if (board[columnNumber][index] != player) {
+            if (board[columnNumber][index] !== player) {
                 hasWon = false;
                 return hasWon;
             }
@@ -77,15 +77,15 @@ function checkHorizontalWin(board, columnNumber) {
 
     // Set to one as the columnNumber's chip is then counted.
     let winCount = 1;
-    winArray = [String(columnNumber) + String(lastMove)];
+    let winArray = [String(columnNumber) + String(lastMove)];
 
     // Check each column to the left of the played column at the played row's height. For each match in sequence, increment winCount.
     // Stop when a different/no chip is found.
-    if (columnNumber != 0) {
+    if (columnNumber !== 0) {
         for (let index = columnNumber; index >= 0; index--) {
             if (board[index][lastMove] === player) {
                 // discount columnNumber's match.
-                if (index != columnNumber) {
+                if (index !== columnNumber) {
                     winArray.push(String(index) + String(lastMove));
                     winCount++;
                 }
@@ -97,11 +97,11 @@ function checkHorizontalWin(board, columnNumber) {
 
     // Check each column to the right of the played column at the played row's height. For each match in sequence, increment winCount.
     // Stop when a different/no chip is found.
-    if (columnNumber != 6) {
+    if (columnNumber !== 6) {
         for (let index = columnNumber; index <= 6; index++) {
             if(board[index][lastMove] === player) {
                 // discount columnNumber's match.
-                if (index != columnNumber) {
+                if (index !== columnNumber) {
                     winArray.push(String(index) + String(lastMove));
                     winCount++;
                 }
@@ -149,7 +149,7 @@ function checkDiagonalWinLeft(board, columnNumber) {
             if (row >= 0) {
                 if (board[index][row] === player) {
                     // Account for duplicates
-                    if (index != column && row != lastMove) {
+                    if (index !== column && row !== lastMove) {
                         winCount++;
                         // winMoves.push(String(index) + String(row));
                     }
@@ -173,7 +173,7 @@ function checkDiagonalWinLeft(board, columnNumber) {
             if (row <= 5) {
                 if (board[index][row] === player) {
                     // Account for duplicates
-                    if (index != column && row != lastMove) {
+                    if (index !== column && row !== lastMove) {
                         winCount++;
                         // winMoves.push(String(index) + String(row));
                     }
@@ -227,7 +227,7 @@ function checkDiagonalWinRight(board, columnNumber = -1) {
             if (row >= 0) {
                 if (board[index][row] === player) {
                     // Account for duplicates
-                    if (index != column && row != lastMove) {
+                    if (index !== column && row !== lastMove) {
                         winCount++;
                         // winMoves.push(String(index) + String(row));
                     }
@@ -251,7 +251,7 @@ function checkDiagonalWinRight(board, columnNumber = -1) {
             if (row <= 5) {
                 if (board[index][row] === player) {
                     // Account for duplicates
-                    if (index != column && row != lastMove) {
+                    if (index !== column && row !== lastMove) {
                         winCount++;
                         // winMoves.push(String(index) + String(row));
                     }
@@ -322,17 +322,17 @@ function getAvailableSpot(columnArray) {
     return row;
 }
 
-function displayBoard(board) {
-    // Used to console log the board correctly.
-    let row;
-    for (let rowNum = 0; rowNum < 6; rowNum++) {
-        row = '';
-        for (let colNum = 6; colNum >= 0; colNum--) {
-            row += board[colNum][rowNum];
-        }
-    }
+// function displayBoard(board) {
+//     // Used to console log the board correctly.
+//     let row;
+//     for (let rowNum = 0; rowNum < 6; rowNum++) {
+//         row = '';
+//         for (let colNum = 6; colNum >= 0; colNum--) {
+//             row += board[colNum][rowNum];
+//         }
+//     }
     
-}
+// }
 
 module.exports = {
     checkWinner,
