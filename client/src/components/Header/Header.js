@@ -17,12 +17,26 @@ const Header = () => {
         <h1 className="header__title">Connect-4</h1>
       </div>
       <nav className="header__nav">
-        <Link to="/" className="header__link">
-          LOGIN
-        </Link>
-        <Link to="/signup" className="header__link">
-          SIGNUP
-        </Link>
+        {!Auth.loggedIn() ?
+          (<div>
+            <Link to="/" className="header__link">
+              LOGIN
+            </Link>
+            <Link to="/signup" className="header__link">
+              SIGNUP
+            </Link>
+          </div>
+          ):
+          (<div>
+            <Link to={"/profile/"+Auth.getUsername()} className="header__link">
+              PROFILE
+            </Link>
+            <Link to="/" onClick={logout} className="header__link">
+              LOGOUT
+            </Link>
+          </div>
+          )
+          }
       </nav>
     </header>
   );
