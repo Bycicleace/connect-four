@@ -7,7 +7,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { useState } from "react";
 import Auth from "../../utils/auth";
 import "./Game.css";
-import { checkWinner, makeMove } from "../../utils/game_functions";
+import { checkCatsGame, checkWinner, makeMove } from "../../utils/game_functions";
 
 const Game = () => {
   const params = useParams();
@@ -35,6 +35,11 @@ const Game = () => {
               checkWinner(board, 4) ||
               checkWinner(board, 5) ||
               checkWinner(board, 6);
+  let isCatsGame = checkCatsGame(board);
+  if (isCatsGame) {
+    isWon = true;
+  }
+  console.log("Cat's: " + isCatsGame, "Won: " + isWon);
   let currentPlayerName = '';
   let isMyTurn = false;
 
@@ -64,6 +69,12 @@ const Game = () => {
     const newBoard = makeMove(board, colNumber, currentPlayerNumber);
     if (checkWinner(newBoard, colNumber)) {
       nextTurn = currentPlayerNumber;
+      isWon = true;
+    }
+    if (checkCatsGame(board) && !isWon) {
+      isCatsGame = true;
+      isWon = true;
+      nextTurn = currentPlayerNumber;
     }
     // setBoard(newBoard);
     try {
@@ -89,7 +100,7 @@ const Game = () => {
   return (
     <div>
       <section className="game__header">
-        <h2>{isWon ? `${currentPlayerName} Wins!` : `Player Turn: ${currentPlayerName}`}</h2>
+        <h2>{isWon ? (isCatsGame ? `Cat's Game!` : `${currentPlayerName} Wins!`) : `Player Turn: ${currentPlayerName}`}</h2>
         <div className="game__moves">
           <button id="col6" onClick={() => chooseColumn(6)} disabled={isWon || !isMyTurn}>Choose</button>
           <button id="col5" onClick={() => chooseColumn(5)} disabled={isWon || !isMyTurn}>Choose</button>

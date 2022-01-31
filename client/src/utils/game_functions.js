@@ -322,6 +322,20 @@ function getAvailableSpot(columnArray) {
     return row;
 }
 
+function checkCatsGame(board) {
+    if (!isColumnOpen(board[0]) &&
+        !isColumnOpen(board[1]) &&
+        !isColumnOpen(board[2]) &&
+        !isColumnOpen(board[3]) &&
+        !isColumnOpen(board[4]) &&
+        !isColumnOpen(board[5]) &&
+        !isColumnOpen(board[6])) {
+            return true;
+    } else {
+        return false;
+    }
+}
+
 // function displayBoard(board) {
 //     // Used to console log the board correctly.
 //     let row;
@@ -336,5 +350,6 @@ function getAvailableSpot(columnArray) {
 
 module.exports = {
     checkWinner,
+    checkCatsGame,
     makeMove
 }
