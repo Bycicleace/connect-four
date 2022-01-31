@@ -10,7 +10,7 @@ The first to form a a horizontal, vertical, or diagonal line of four tokens wins
 * [Usage](##Usage)
 * [Technologies Used](##Technologies-Used)
 * [Demo](##Demo)
-* [Deployed Application](##Deployed Application)
+* [Deployed App](##Deployed-App)
 * [License](##License)
 
     
@@ -48,11 +48,11 @@ npm run develop
 
 ## Demo
 
-![Alt Text]()
+![Alt Text](https://github.com/Bycicleace/connect-four/blob/readme/client/src/assets/demovideo.gif)
 
   
 
-### Deployed Application
+### Deployed App
 
 
 
