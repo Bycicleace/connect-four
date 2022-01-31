@@ -1,5 +1,4 @@
 import React from "react";
-// import { Container, Card, CardColumns } from 'react-bootstrap';
 import { useMutation, useQuery } from "@apollo/client";
 import {  QUERY_USER } from "../../utils/queries";
 import { JOIN_GAME } from "../../utils/mutations";
