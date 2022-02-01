@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -43,14 +43,14 @@ function App() {
           <div className="app__container">
           <Router>
             <Header />
-            <Switch>
-              <Route exact path="/game/:gameId" component={Game} />
-              <Route exact path="/" component={Login} />
-              <Route exact path="/signup" component={Signup} />
-              <Route exact path="/profile/:username?" component={Profile} />
-            </Switch>
-            </Router>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/game/:gameId" element={<Game />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/profile/:username" element={<Profile />} />
+            </Routes>
             <Footer />
+          </Router>
           </div>
         </div>
     </ApolloProvider>
