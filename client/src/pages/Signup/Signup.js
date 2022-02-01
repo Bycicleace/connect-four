@@ -31,10 +31,10 @@ const Signup = () => {
       const { data } = await addUser({
         variables: { ...formState },
       });
-      window.location.assign("/Profile/");
+      // window.location.assign("/profile/");
       
-      Auth.login(data.addUser.token);
-      window.location.assign('/profile/');
+      Auth.login(data.addUser.token, data.addUser);
+      // window.location.assign('/profile/');
     } catch (e) {
       console.error(e);
     }

@@ -28,7 +28,7 @@ const Login = (props) => {
         variables: { ...formState },
       });
 
-      window.location.assign("/Profile/");
+      // window.location.assign("/profile/");
 
       Auth.login(data.login.token, data.login.user);
     } catch (e) {
