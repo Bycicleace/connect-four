@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -18,7 +18,7 @@ import Profile from './pages/Profile/Profile';
 import Signup from './pages/Signup/Signup';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -43,12 +43,12 @@ function App() {
           <div className="app__container">
           <Router>
             <Header />
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/game/:gameId" element={<Game />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/profile/:username" element={<Profile />} />
-            </Routes>
+            <Switch>
+              <Route exact path="/" component={Login} />
+              <Route exact path="/game/:gameId" component={Game} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/profile/:username" component={Profile} />
+            </Switch>
             <Footer />
           </Router>
           </div>

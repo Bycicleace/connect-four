@@ -1,3 +1,4 @@
+import React from 'react';
 import { QUERY_USER } from "../../utils/queries";
 import Auth from "../../utils/auth";
 import "./UserBio.css";
