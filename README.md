@@ -34,7 +34,6 @@ npm run develop
  * JavaScript
  * HTML and CSS
  * React
- * Create React App
  * Node.js
  * Express.js
  * Apollo Server
