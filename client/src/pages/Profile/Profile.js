@@ -22,7 +22,7 @@ function Profile() {
   });
   const [openGames, setOpenGames] = useState(theOpenGames.length);
 
-  console.log(user.username, games, openGames);
+  console.log(user.username, games, theOpenGames, openGames);
 
   return (
     <main className="profile__page">
