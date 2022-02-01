@@ -14,7 +14,7 @@ const ActiveGames = (props) => {
   const games = props.games;
 
   const activeGames = games.filter((game) => {
-    return (game.player1 === user.username && game.player2 != "Empty") || game.player2 === user.username;
+    return (game.player1 === user.username && game.player2 !== "Empty") || game.player2 === user.username;
   });
 
   if (!activeGames.length) {

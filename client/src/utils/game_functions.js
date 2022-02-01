@@ -22,7 +22,7 @@
          Left
 */
 
-function checkWinner(board, columnNumber) {
+export function checkWinner(board, columnNumber) {
     // Take in game and an optional column number (last column chosen). Then, if move is populated, check for 4 in a row based around that last move.
     // Otherwise, check the entire gameboard for a win.
     // column should be a number corresponding to the column (left to right 0 - 6) that the last move was made in.
@@ -285,7 +285,7 @@ function getLastMove(board, columnNumber) {
     return { lastMove, player };
 }
 
-function makeMove(inBoard, columnNumber, player) {
+export function makeMove(inBoard, columnNumber, player) {
     // Takes the player number, and puts their number in the next open field in the column provided.
     // Returns the board. If invalid, returns false.
     let board = [...inBoard];
@@ -322,7 +322,7 @@ function getAvailableSpot(columnArray) {
     return row;
 }
 
-function checkFullBoard(board) {
+export function checkFullBoard(board) {
     if (!isColumnOpen(board[0]) &&
         !isColumnOpen(board[1]) &&
         !isColumnOpen(board[2]) &&
@@ -348,8 +348,8 @@ function checkFullBoard(board) {
     
 // }
 
-module.exports = {
-    checkWinner,
-    checkFullBoard,
-    makeMove
-}
+// module.exports = {
+//     checkWinner,
+//     checkFullBoard,
+//     makeMove
+// }

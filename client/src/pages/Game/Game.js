@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import { QUERY_GAME } from "../../utils/queries";
 import { UPDATE_BOARD } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
-import { useState } from "react";
+// import { useState } from "react";
 import Auth from "../../utils/auth";
 import "./Game.css";
-import { checkFullBoard, checkWinner, makeMove } from "../../utils/game_functions";
+import { checkWinner, checkFullBoard, makeMove } from "../../utils/game_functions.js";
 
 const Game = () => {
   const params = useParams();
