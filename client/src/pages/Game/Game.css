@@ -33,3 +33,16 @@
 .game__moves button:disabled {
     display: none;
 }
+
+@media screen and (max-width: 475px) {
+    .game__moves button {
+        width: 34px;
+        height: 34px;
+    }
+}
+@media screen and (max-width: 475px) {
+    .game__moves button {
+        width: 38px;
+        height: 38px;
+    }
+}
