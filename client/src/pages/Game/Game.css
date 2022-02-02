@@ -1,6 +1,7 @@
 .game__container {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 25px;
 }
 
 .game__header {
@@ -42,7 +43,7 @@
 }
 @media screen and (max-width: 400px) {
     .game__moves button {
-        width: 38px;
-        height: 38px;
+        width: 28px;
+        height: 28px;
     }
 }
