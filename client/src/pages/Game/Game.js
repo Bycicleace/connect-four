@@ -97,10 +97,18 @@ const Game = () => {
   }
   // console.log(board, currentPlayerNumber, currentPlayerName, nextTurn);
 
+  let currentColor = "";
+  if (currentPlayerNumber === 1) {
+    currentColor = "Red";
+  }
+  else {
+    currentColor = "Yellow";
+  }
+
   return (
     <div>
       <section className="game__header">
-          <h1>{isWon ? (isCatsGame ? `Cat's Game!` : `${currentPlayerName} Wins!`) : `Player Turn: ${currentPlayerName}`}</h1>
+          <h1>{isWon ? (isCatsGame ? `Cat's Game!` : `${currentPlayerName} Wins!`) : `Player Turn: ${currentPlayerName} (${currentColor})`}</h1>
           {isMyTurn ? (
             <h2>Choose your Column:</h2>
           ) : (

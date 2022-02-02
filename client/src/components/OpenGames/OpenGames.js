@@ -7,16 +7,16 @@ import "./OpenGames.css";
 import Auth from "../../utils/auth";
 
 const OpenGames = (props) => {
-  const games = props.games || [];
-  const { data } = useQuery(QUERY_USER, {
-    variables: { id: Auth.getProfile().data._id },
-  });
+  const { openGames } = props || [];
+  // const { data } = useQuery(QUERY_USER, {
+  //   variables: { id: Auth.getProfile().data._id },
+  // });
 
-  const user = data?.user || {};
+  // const user = data?.user || {};
   
-  const openGames = games.filter((game) => {
-    return game.player2 === "Empty" && game.player1 !== user.username;
-  });
+  // const openGames = games.filter((game) => {
+  //   return game.player2 === "Empty" && game.player1 !== user.username;
+  // });
 
   const [joinGame] = useMutation(JOIN_GAME);
 
