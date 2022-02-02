@@ -17,7 +17,7 @@ const Game = () => {
   const [ updateBoard, { error } ] = useMutation(UPDATE_BOARD);
   // const [board, setBoard] = useState(data?.game?.board);
   const currentProfile = Auth.getProfile();
-  console.log(currentProfile);
+  // console.log(currentProfile);
 
   if (loading) {
       return (
@@ -39,7 +39,7 @@ const Game = () => {
   if (isCatsGame) {
     isWon = true;
   }
-  console.log("Cat's: " + isCatsGame, "Won: " + isWon);
+  // console.log("Cat's: " + isCatsGame, "Won: " + isWon);
   let currentPlayerName = '';
   let isMyTurn = false;
 
@@ -63,7 +63,7 @@ const Game = () => {
   } else {
     isMyTurn = false;
   }
-  console.log(isMyTurn);
+  // console.log(isMyTurn);
 
   async function chooseColumn(colNumber) {
     const newBoard = makeMove(board, colNumber, currentPlayerNumber);
