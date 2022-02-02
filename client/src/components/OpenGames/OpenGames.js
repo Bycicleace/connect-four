@@ -6,7 +6,6 @@ import "./OpenGames.css";
 import Auth from "../../utils/auth";
 
 const OpenGames = (props) => {
-  const games = props.games || [];
   const { data } = useQuery(QUERY_USER, {
     variables: { id: Auth.getProfile().data._id },
   });

@@ -5,6 +5,8 @@ import { ADD_GAME } from "../../utils/mutations";
 import { useMutation, useQuery } from "@apollo/client";
 
 const UserBio = (props) => {
+  const { openGames, setOpenGames } = props;
+
   const userId = Auth.getProfile().data._id;
   const [createGame] = useMutation(ADD_GAME);
 
@@ -16,7 +18,8 @@ const UserBio = (props) => {
           player1: username,
         },
       });
-      window.location.reload();
+      // window.location.reload();
+      setOpenGames(openGames + 1);
     } catch (e) {
       console.error(e);
     }
@@ -35,8 +38,8 @@ const UserBio = (props) => {
       <div className="userBio__bio-card">
         <h2 className="userBio__usernameHeader">{`${data.user.username}`}</h2>
         <div className="userBio__stats-container">
-          <h3 className="userBio__stats-header">Statistics </h3>
-          <p className="userBio__stats-text">Wins: {`${data.user.wins}`}</p>
+          {/* <h3 className="userBio__stats-header">Statistics </h3>
+          <p className="userBio__stats-text">Wins: {`${data.user.wins}`}</p> */}
           {/* 
         // # of games completed?
         //# of completed games?
