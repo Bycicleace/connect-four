@@ -5,9 +5,8 @@ import { ADD_GAME } from "../../utils/mutations";
 import { useMutation, useQuery } from "@apollo/client";
 
 const UserBio = (props) => {
-  const { openGames, setOpenGames, myOpenGames } = props;
+  const { openGames, setOpenGames } = props;
 
-  // setOpenGames(myOpenGames.length);
   const userId = Auth.getProfile().data._id;
   const [createGame] = useMutation(ADD_GAME);
 
@@ -20,7 +19,7 @@ const UserBio = (props) => {
         },
       });
       // window.location.reload();
-      setOpenGames(myOpenGames.length + 1);
+      setOpenGames(openGames + 1);
     } catch (e) {
       console.error(e);
     }
