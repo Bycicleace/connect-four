@@ -1,6 +1,7 @@
 {
-  "short_name": "Connect-Four",
   "name": "Connect-Four",
+  "short_name": "Connect-Four",
+  "description": " An app that allows you to play connect four with another player",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,6 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#ffffff",
+  "background_color": "##01579b"
 }
