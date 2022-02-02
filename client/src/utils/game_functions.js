@@ -22,7 +22,7 @@
          Left
 */
 
-function checkWinner(board, columnNumber) {
+export function checkWinner(board, columnNumber) {
     // Take in game and an optional column number (last column chosen). Then, if move is populated, check for 4 in a row based around that last move.
     // Otherwise, check the entire gameboard for a win.
     // column should be a number corresponding to the column (left to right 0 - 6) that the last move was made in.
@@ -56,7 +56,7 @@ function checkVerticalWin(board, columnNumber) {
     } else {
         let hasWon = true;
         for (let index = lastMove; index < board[columnNumber].length; index++) {
-            if (board[columnNumber][index] != player) {
+            if (board[columnNumber][index] !== player) {
                 hasWon = false;
                 return hasWon;
             }
@@ -77,15 +77,15 @@ function checkHorizontalWin(board, columnNumber) {
 
     // Set to one as the columnNumber's chip is then counted.
     let winCount = 1;
-    winArray = [String(columnNumber) + String(lastMove)];
+    let winArray = [String(columnNumber) + String(lastMove)];
 
     // Check each column to the left of the played column at the played row's height. For each match in sequence, increment winCount.
     // Stop when a different/no chip is found.
-    if (columnNumber != 0) {
+    if (columnNumber !== 0) {
         for (let index = columnNumber; index >= 0; index--) {
             if (board[index][lastMove] === player) {
                 // discount columnNumber's match.
-                if (index != columnNumber) {
+                if (index !== columnNumber) {
                     winArray.push(String(index) + String(lastMove));
                     winCount++;
                 }
@@ -97,11 +97,11 @@ function checkHorizontalWin(board, columnNumber) {
 
     // Check each column to the right of the played column at the played row's height. For each match in sequence, increment winCount.
     // Stop when a different/no chip is found.
-    if (columnNumber != 6) {
+    if (columnNumber !== 6) {
         for (let index = columnNumber; index <= 6; index++) {
             if(board[index][lastMove] === player) {
                 // discount columnNumber's match.
-                if (index != columnNumber) {
+                if (index !== columnNumber) {
                     winArray.push(String(index) + String(lastMove));
                     winCount++;
                 }
@@ -149,7 +149,7 @@ function checkDiagonalWinLeft(board, columnNumber) {
             if (row >= 0) {
                 if (board[index][row] === player) {
                     // Account for duplicates
-                    if (index != column && row != lastMove) {
+                    if (index !== column && row !== lastMove) {
                         winCount++;
                         // winMoves.push(String(index) + String(row));
                     }
@@ -173,7 +173,7 @@ function checkDiagonalWinLeft(board, columnNumber) {
             if (row <= 5) {
                 if (board[index][row] === player) {
                     // Account for duplicates
-                    if (index != column && row != lastMove) {
+                    if (index !== column && row !== lastMove) {
                         winCount++;
                         // winMoves.push(String(index) + String(row));
                     }
@@ -227,7 +227,7 @@ function checkDiagonalWinRight(board, columnNumber = -1) {
             if (row >= 0) {
                 if (board[index][row] === player) {
                     // Account for duplicates
-                    if (index != column && row != lastMove) {
+                    if (index !== column && row !== lastMove) {
                         winCount++;
                         // winMoves.push(String(index) + String(row));
                     }
@@ -251,7 +251,7 @@ function checkDiagonalWinRight(board, columnNumber = -1) {
             if (row <= 5) {
                 if (board[index][row] === player) {
                     // Account for duplicates
-                    if (index != column && row != lastMove) {
+                    if (index !== column && row !== lastMove) {
                         winCount++;
                         // winMoves.push(String(index) + String(row));
                     }
@@ -285,7 +285,7 @@ function getLastMove(board, columnNumber) {
     return { lastMove, player };
 }
 
-function makeMove(inBoard, columnNumber, player) {
+export function makeMove(inBoard, columnNumber, player) {
     // Takes the player number, and puts their number in the next open field in the column provided.
     // Returns the board. If invalid, returns false.
     let board = [...inBoard];
@@ -322,19 +322,34 @@ function getAvailableSpot(columnArray) {
     return row;
 }
 
-function displayBoard(board) {
-    // Used to console log the board correctly.
-    let row;
-    for (let rowNum = 0; rowNum < 6; rowNum++) {
-        row = '';
-        for (let colNum = 6; colNum >= 0; colNum--) {
-            row += board[colNum][rowNum];
-        }
+export function checkFullBoard(board) {
+    if (!isColumnOpen(board[0]) &&
+        !isColumnOpen(board[1]) &&
+        !isColumnOpen(board[2]) &&
+        !isColumnOpen(board[3]) &&
+        !isColumnOpen(board[4]) &&
+        !isColumnOpen(board[5]) &&
+        !isColumnOpen(board[6])) {
+            return true;
+    } else {
+        return false;
     }
-    
 }
 
-module.exports = {
-    checkWinner,
-    makeMove
-}
+// function displayBoard(board) {
+//     // Used to console log the board correctly.
+//     let row;
+//     for (let rowNum = 0; rowNum < 6; rowNum++) {
+//         row = '';
+//         for (let colNum = 6; colNum >= 0; colNum--) {
+//             row += board[colNum][rowNum];
+//         }
+//     }
+    
+// }
+
+// module.exports = {
+//     checkWinner,
+//     checkFullBoard,
+//     makeMove
+// }
