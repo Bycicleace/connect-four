@@ -38,8 +38,8 @@ const UserBio = (props) => {
       <div className="userBio__bio-card">
         <h2 className="userBio__usernameHeader">{`${data.user.username}`}</h2>
         <div className="userBio__stats-container">
-          <h3 className="userBio__stats-header">Statistics </h3>
-          <p className="userBio__stats-text">Wins: {`${data.user.wins}`}</p>
+          {/* <h3 className="userBio__stats-header">Statistics </h3>
+          <p className="userBio__stats-text">Wins: {`${data.user.wins}`}</p> */}
           {/* 
         // # of games completed?
         //# of completed games?
