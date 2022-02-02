@@ -22,11 +22,11 @@ function Profile() {
     return game.player2 === "Empty" && game.player1 !== user.username;
   });
 
-  const [ openGames, setOpenGames ] = useState(myOpenGames.length);
+  const [ openGames, setOpenGames ] = useState(0);
 
   return (
     <main className="profile__page">
-      <UserBio openGames={openGames} setOpenGames={setOpenGames} />
+      <UserBio openGames={openGames} setOpenGames={setOpenGames} myOpenGames={myOpenGames} />
       <ActiveGames games={games} />
       <YourOpenGames openGames={openGames} />
       <OpenGames openGames={myOpenGames} />
