@@ -1,5 +1,4 @@
 import React from "react";
-// import { Container, Card, CardColumns } from 'react-bootstrap';
 import { useMutation, useQuery } from "@apollo/client";
 import {  QUERY_USER } from "../../utils/queries";
 import { JOIN_GAME } from "../../utils/mutations";
@@ -7,16 +6,15 @@ import "./OpenGames.css";
 import Auth from "../../utils/auth";
 
 const OpenGames = (props) => {
-  const { openGames } = props || [];
-  // const { data } = useQuery(QUERY_USER, {
-  //   variables: { id: Auth.getProfile().data._id },
-  // });
+  const { data } = useQuery(QUERY_USER, {
+    variables: { id: Auth.getProfile().data._id },
+  });
 
-  // const user = data?.user || {};
+  const user = data?.user || {};
   
-  // const openGames = games.filter((game) => {
-  //   return game.player2 === "Empty" && game.player1 !== user.username;
-  // });
+  const openGames = games.filter((game) => {
+    return game.player2 === "Empty" && game.player1 !== user.username;
+  });
 
   const [joinGame] = useMutation(JOIN_GAME);
 
