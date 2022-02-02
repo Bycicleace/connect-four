@@ -1,6 +1,4 @@
 import React from "react";
-import { useQuery } from "@apollo/client";
-import { QUERY_GAME } from "../../utils/queries";
 import "./GameBoard.css";
 const img0 = require("../../assets/board/0.png");
 const img1 = require("../../assets/board/1.png");
@@ -30,6 +28,7 @@ function GameBoard(props) {
                       className="gameBoard__field"
                       src={img0}
                       key={`${col}${row}`}
+                      alt='Empty field'
                     />
                   );
                 case "1":
@@ -39,6 +38,7 @@ function GameBoard(props) {
                       className="gameBoard__field"
                       src={img1}
                       key={`${col}${row}`}
+                      alt='Player 1'
                     />
                   );
                 case "2":
@@ -48,6 +48,17 @@ function GameBoard(props) {
                       className="gameBoard__field"
                       src={img2}
                       key={`${col}${row}`}
+                      alt='Player 2'
+                    />
+                  );
+                default:
+                  return (
+                    <img
+                      id={`${col}${row}`}
+                      className="gameBoard__field"
+                      src={img0}
+                      key={`${col}${row}`}
+                      alt='Empty field'
                     />
                   );
               }
