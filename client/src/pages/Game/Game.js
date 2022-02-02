@@ -100,22 +100,26 @@ const Game = () => {
   return (
     <div>
       <section className="game__header">
-        <h2>{isWon ? (isCatsGame ? `Cat's Game!` : `${currentPlayerName} Wins!`) : `Player Turn: ${currentPlayerName}`}</h2>
-        <div className="game__moves">
-          <button id="col6" onClick={() => chooseColumn(6)} disabled={isWon || !isMyTurn}>Choose</button>
-          <button id="col5" onClick={() => chooseColumn(5)} disabled={isWon || !isMyTurn}>Choose</button>
-          <button id="col4" onClick={() => chooseColumn(4)} disabled={isWon || !isMyTurn}>Choose</button>
-          <button id="col3" onClick={() => chooseColumn(3)} disabled={isWon || !isMyTurn}>Choose</button>
-          <button id="col2" onClick={() => chooseColumn(2)} disabled={isWon || !isMyTurn}>Choose</button>
-          <button id="col1" onClick={() => chooseColumn(1)} disabled={isWon || !isMyTurn}>Choose</button>
-          <button id="col0" onClick={() => chooseColumn(0)} disabled={isWon || !isMyTurn}>Choose</button>
-        </div>
+          <h1>{isWon ? (isCatsGame ? `Cat's Game!` : `${currentPlayerName} Wins!`) : `Player Turn: ${currentPlayerName}`}</h1>
+          {isMyTurn ? (
+            <h2>Choose your Column:</h2>
+          ) : (
+            <></>
+          )}
+          <div className="game__moves">
+            <button id="col6" onClick={() => chooseColumn(6)} disabled={isWon || !isMyTurn}></button>
+            <button id="col5" onClick={() => chooseColumn(5)} disabled={isWon || !isMyTurn}></button>
+            <button id="col4" onClick={() => chooseColumn(4)} disabled={isWon || !isMyTurn}></button>
+            <button id="col3" onClick={() => chooseColumn(3)} disabled={isWon || !isMyTurn}></button>
+            <button id="col2" onClick={() => chooseColumn(2)} disabled={isWon || !isMyTurn}></button>
+            <button id="col1" onClick={() => chooseColumn(1)} disabled={isWon || !isMyTurn}></button>
+            <button id="col0" onClick={() => chooseColumn(0)} disabled={isWon || !isMyTurn}></button>
+          </div>
       </section>
       <section className="game__container">
         <GameBoard params={board} />
       </section>
     </div>
-    
   );
 };
 
