@@ -37,7 +37,7 @@ function Profile() {
       <UserBio openGames={openGames} setOpenGames={setOpenGames} />
       <ActiveGames games={games} />
       <YourOpenGames openGames={openGames} />
-      <OpenGames openGames={myOpenGames} />
+      <OpenGames games={games} />
     </main>
   );
 }
