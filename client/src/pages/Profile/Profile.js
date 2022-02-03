@@ -22,7 +22,6 @@ function Profile() {
     return game.player2 === "Empty" && game.player1 === user.username;
   });
 
-  console.log(myOpenGames.length);
   const temp = myOpenGames.length
   const [ openGames, setOpenGames ] = useState(0);
 
@@ -37,7 +36,7 @@ function Profile() {
       <UserBio openGames={openGames} setOpenGames={setOpenGames} />
       <ActiveGames games={games} />
       <YourOpenGames openGames={openGames} />
-      <OpenGames openGames={myOpenGames} />
+      <OpenGames games={games} />
     </main>
   );
 }
