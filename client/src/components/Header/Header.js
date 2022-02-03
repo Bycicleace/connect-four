@@ -28,7 +28,7 @@ const Header = () => {
           </div>
           ):
           (<div>
-            <Link to={"/profile/"+Auth.getUsername()} className="header__link">
+            <Link to={"/profile"} className="header__link">
               PROFILE
             </Link>
             <Link to="/" onClick={logout} className="header__link">
