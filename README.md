@@ -47,7 +47,7 @@ npm run develop
 
 ## Demo
 
-![Alt Text](https://github.com/Bycicleace/connect-four/blob/readme/client/src/assets/demo-vdeo(1).gif)
+![Alt Text](https://github.com/Bycicleace/connect-four/blob/readme/client/src/assets/demo-vdeo.gif)
 
   
 
