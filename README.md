@@ -47,12 +47,14 @@ npm run develop
 
 ## Demo
 
-![Alt Text](https://github.com/Bycicleace/connect-four/blob/readme/client/src/assets/demovideo.gif)
+![Alt Text](https://github.com/Bycicleace/connect-four/blob/readme/client/src/assets/demo-vdeo.gif)
 
   
 
 ### Deployed App
 
+
+[Connect-Four](https://cbc-connect-4.herokuapp.com/)
 
 
 ## License
