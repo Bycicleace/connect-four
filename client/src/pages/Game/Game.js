@@ -106,9 +106,9 @@ const Game = () => {
   }
 
   return (
-    <div>
+    <div className="game">
       <section className="game__header">
-          <h1>{isWon ? (isCatsGame ? `Cat's Game!` : `${currentPlayerName} Wins!`) : `Player Turn: ${currentPlayerName} (${currentColor})`}</h1>
+          <h1 className="game__text">{isWon ? (isCatsGame ? `Cat's Game!` : `${currentPlayerName} Wins!`) : `Player Turn: ${currentPlayerName} (${currentColor})`}</h1>
           {isMyTurn ? (
             <h2>Choose your Column:</h2>
           ) : (
