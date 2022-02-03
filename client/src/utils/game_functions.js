@@ -48,20 +48,31 @@ function checkVerticalWin(board, columnNumber) {
     if (!player) {
         return false;
     }
+
+    let winCount = 0;
     // The minimum amount of chips to win is 4, which would be spots 2, 3, 4, and 5.
     // If the last move is 0, 1 or 2, then it's possible, otherwise, it's not.
     if (lastMove > 2) {
         // Impossible to win 
         return false;
     } else {
-        let hasWon = true;
         for (let index = lastMove; index < board[columnNumber].length; index++) {
-            if (board[columnNumber][index] !== player) {
-                hasWon = false;
-                return hasWon;
+            if (board[columnNumber][index] === player) {
+                winCount ++;
+            } else {
+                if (winCount >= 4) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
-        return hasWon;
+
+        if (winCount >= 4) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

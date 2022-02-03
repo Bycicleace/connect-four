@@ -26,7 +26,7 @@ const gameSchema = new Schema(
         },
         playerTurn: {
             type: Number,
-            default: 1
+            default: 2
         },
         board: {
             type: Array,

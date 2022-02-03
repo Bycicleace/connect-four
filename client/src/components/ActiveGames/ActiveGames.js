@@ -20,11 +20,11 @@ const ActiveGames = (props) => {
   if (!activeGames.length) {
     return (
     
-      <section className="openGames__container">
-        <h1 className="openGames__title">
+      <section className="activeGames__container">
+        <h1 className="activeGames__header">
           Active Games:
         </h1>
-        <h2 className="openGames__sub-title">
+        <h2 className="activeGames__header">
           You're not actively in any games
         </h2>
       </section>

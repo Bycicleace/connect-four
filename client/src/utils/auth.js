@@ -30,7 +30,7 @@ class AuthService {
     login(idToken, user) {
         // Saves user token to localStorage
         localStorage.setItem('id_token', idToken);
-        localStorage.setItem('username',user.username)
+        localStorage.setItem('username',user.username);
         window.location.assign('/profile/' + user.username);
     }
 

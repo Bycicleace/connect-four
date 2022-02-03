@@ -18,7 +18,8 @@ import Profile from './pages/Profile/Profile';
 import Signup from './pages/Signup/Signup';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  // CHANGE TO '/graphql' FOR LIVE
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
