@@ -171,7 +171,7 @@ export function getComputerMove(rankedMoves) {
     // console.log("Moves: " + String(moves));
 
     // Generate a random selection from array
-    // const selection = Math.floor((Math.random() * moves.length));
+    const selection = Math.floor((Math.random() * moves.length));
     // console.log("Selection: " + String(moves[selection]));
     return moves[selection];
 }
