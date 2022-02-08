@@ -183,7 +183,7 @@ export function makeComputerMove(board, player) {
     return { newComputerBoard, compMove };
 }
 
-function makePlayerMove(board, columnNumber, player) {
+export function makePlayerMove(board, columnNumber, player) {
     const newPlayerBoard = makeMove(board, columnNumber, player);
     // displayBoard(newPlayerBoard);
     
@@ -210,6 +210,6 @@ function makePlayerMove(board, columnNumber, player) {
     } else if (checkFullBoard(newComputerBoard)) {
         console.log("It's a tie!");
     }
-    displayBoard(newComputerBoard);
+    // displayBoard(newComputerBoard);
     return newComputerBoard;
 }
