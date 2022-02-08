@@ -38,7 +38,7 @@ export function checkWinner(board, columnNumber) {
     }
 }
 
-function getVerticalWinCount(board, columnNumber) {
+export function getVerticalWinCount(board, columnNumber) {
     // Check for win in columns. Column is the last column played.
     // If win, return true, else false.
 
@@ -46,40 +46,30 @@ function getVerticalWinCount(board, columnNumber) {
     let { lastMove, player } = getLastMove(board,columnNumber);
     // This means the column is empty
     if (!player) {
-        return false;
+        return 0;
     }
 
     let winCount = 0;
     // The minimum amount of chips to win is 4, which would be spots 2, 3, 4, and 5.
     // If the last move is 0, 1 or 2, then it's possible, otherwise, it's not.
-    if (lastMove > 2) {
-        // Impossible to win 
-        return false;
-    } else {
-        for (let index = lastMove; index < board[columnNumber].length; index++) {
-            if (board[columnNumber][index] === player) {
-                winCount ++;
-            } else {
-                if (winCount >= 4) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+    for (let index = lastMove; index < board[columnNumber].length; index++) {
+        if (board[columnNumber][index] === player) {
+            winCount ++;
+        } else {
+            break;
         }
-
-        return winCount;
     }
+    return winCount;
 }
 
-function getHorizontalWinCount(board, columnNumber) {
+export function getHorizontalWinCount(board, columnNumber) {
     // Check for win in rows. ColumnNumber is the last column played.
     // If win, return true, else false
     let { lastMove, player } = getLastMove(board, columnNumber);
     // console.log(`Last move: column ${columnNumber}, row ${lastMove}`);
 
     if (!player) {
-        return false;
+        return 0;
     }
 
     // Set to one as the columnNumber's chip is then counted.
@@ -121,7 +111,7 @@ function getHorizontalWinCount(board, columnNumber) {
     return winCount;
 }
 
-function getDiagonalWinLeftCount(board, columnNumber) {
+export function getDiagonalWinLeftCount(board, columnNumber) {
     // Check for win from upper left to lower right diagonal. Column is the last column played (optional)
     // If win, return true, else false
 
@@ -130,7 +120,7 @@ function getDiagonalWinLeftCount(board, columnNumber) {
 
     if (!player) {
         // column is empty
-        return false;
+        return 0;
     }
 
     // defined for ease
@@ -193,7 +183,7 @@ function getDiagonalWinLeftCount(board, columnNumber) {
 
 }
 
-function getDiagonalWinRightCount(board, columnNumber = -1) {
+export function getDiagonalWinRightCount(board, columnNumber = -1) {
     // Check for win from upper right to lower left diagonal. Column is the last column played (optional)
     // If win, return true, else false.
 
@@ -202,7 +192,7 @@ function getDiagonalWinRightCount(board, columnNumber = -1) {
 
     if (!player) {
         // column is empty
-        return false;
+        return 0;
     }
 
     // defined for ease
@@ -264,7 +254,7 @@ function getDiagonalWinRightCount(board, columnNumber = -1) {
     return winCount;
 }
 
-function getLastMove(board, columnNumber) {
+export function getLastMove(board, columnNumber) {
     let lastMove = getAvailableSpot(board[columnNumber]) + 1;
     let player = board[columnNumber][lastMove];
 
@@ -345,20 +335,21 @@ export function getSurroundingTokenCount(board, columnNumber) {
            }
        }
    }
+   tokenCount--; // Remove one for current move
    return tokenCount;
 }
 
-// function displayBoard(board) {
-//     // Used to console log the board correctly.
-//     let row;
-//     for (let rowNum = 0; rowNum < 6; rowNum++) {
-//         row = '';
-//         for (let colNum = 6; colNum >= 0; colNum--) {
-//             row += board[colNum][rowNum];
-//         }
-//     }
-    
-// }
+function displayBoard(board) {
+    // Used to console log the board correctly.
+    let row;
+    for (let rowNum = 0; rowNum < 6; rowNum++) {
+        row = '';
+        for (let colNum = 6; colNum >= 0; colNum--) {
+            row += board[colNum][rowNum];
+        }
+    console.log(row);
+    }  
+}
 
 // module.exports = {
 //     checkWinner,

@@ -112,6 +112,9 @@ export function rankMoves(board, player) {
 
             // + 15 for adding to a chain (Use checkX functions)
             let verticalCount = getVerticalWinCount(movedBoard, i);
+            if (verticalCount > 2) {
+                console.log("Vertical Count: " + String(verticalCount), "Column: " + String(i));
+            }
             let horizontalCount = getHorizontalWinCount(movedBoard, i);
             let diagonalLeftCount = getDiagonalWinLeftCount(movedBoard, i);
             let diagonalRightCount = getDiagonalWinRightCount(movedBoard, i);
@@ -142,7 +145,7 @@ export function rankMoves(board, player) {
     }
 
     // Array of scored moves returned
-    console.log("Ranked Moves array: " + String(rankedMoves));
+    // console.log("Ranked Moves array: " + String([...rankedMoves].reverse()));
     return rankedMoves;
 }
 
@@ -153,15 +156,60 @@ export function isNextMoveWin(board, columnNumber, player) {
 export function getComputerMove(rankedMoves) {
     // Get highest value from rankedMoves
     const highestValue = Math.max(...rankedMoves);
+    // console.log("rankedMoves: " + String(rankedMoves));
+    // console.log("Highest Value: " + String(highestValue));
 
     // Get all indicies that house that value
     let moves = [];
     for (let i = 0; i < rankedMoves.length; i++) {
         if (rankedMoves[i] === highestValue) {
+            // console.log("HV hit: " + String(rankedMoves[i]));
             moves.push(i);
         }
     }
 
+    // console.log("Moves: " + String(moves));
+
     // Generate a random selection from array
-    const selection = Math.floor(Math.random() * moves.length + 1);
+    // const selection = Math.floor((Math.random() * moves.length));
+    // console.log("Selection: " + String(moves[selection]));
+    return moves[selection];
+}
+
+export function makeComputerMove(board, player) {
+    const moves = rankMoves(board, player);
+    const compMove = getComputerMove(moves);
+    const newComputerBoard = makeMove(board, compMove, player);
+    return { newComputerBoard, compMove };
+}
+
+function makePlayerMove(board, columnNumber, player) {
+    const newPlayerBoard = makeMove(board, columnNumber, player);
+    // displayBoard(newPlayerBoard);
+    
+    let computerPlayer = 0;
+    if (player === 1) {
+        computerPlayer = 2;
+    } else if (player === 2) {
+        computerPlayer = 1;
+    } else {
+        computerPlayer = 0;
+    }
+
+    if (checkWinner(newPlayerBoard, columnNumber)) {
+        console.log("You win!");
+        return newPlayerBoard;
+    } else if (checkFullBoard(newPlayerBoard)) {
+        console.log("Cat's game!");
+        return newPlayerBoard;
+    }
+
+    const { newComputerBoard, compMove } = makeComputerMove(newPlayerBoard, computerPlayer);
+    if (checkWinner(newComputerBoard, compMove)) {
+        console.log("I win!");
+    } else if (checkFullBoard(newComputerBoard)) {
+        console.log("It's a tie!");
+    }
+    displayBoard(newComputerBoard);
+    return newComputerBoard;
 }
