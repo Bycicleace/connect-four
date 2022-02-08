@@ -102,6 +102,7 @@ export function rankMoves(board, player) {
             if (isColumnOpen(movedBoard[i])) {
                 if (isNextMoveWin(movedboard, i, opponent)) {
                     rankedMoves[i] = 0;
+                    // Jumps over scoring logic below and executes next loop
                     continue;
                 }
             }
@@ -112,9 +113,6 @@ export function rankMoves(board, player) {
 
             // + 15 for adding to a chain (Use checkX functions)
             let verticalCount = getVerticalWinCount(movedBoard, i);
-            if (verticalCount > 2) {
-                console.log("Vertical Count: " + String(verticalCount), "Column: " + String(i));
-            }
             let horizontalCount = getHorizontalWinCount(movedBoard, i);
             let diagonalLeftCount = getDiagonalWinLeftCount(movedBoard, i);
             let diagonalRightCount = getDiagonalWinRightCount(movedBoard, i);
