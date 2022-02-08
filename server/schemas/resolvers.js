@@ -26,6 +26,7 @@ const resolvers = {
           await Game.create({
             player1: context.user.username,
             player2: "Computer",
+            playerTurn: 1,
             hasComputer: true,
             isFull: true
           })
