@@ -6,6 +6,8 @@ export const ADD_GAME = gql`
       _id
       player1
       player2
+      isFull
+      hasComputer
       playerTurn
       board
     }

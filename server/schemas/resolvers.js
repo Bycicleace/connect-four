@@ -22,7 +22,28 @@ const resolvers = {
     // resolver for adding a game
     addGame: async (parent, args, context) => {
       if (context.user) {
-        const game = await Game.create({ player1: context.user.username });
+        if (args.hasComputer) {
+          const game = await Game.create({
+            player1: context.user.username,
+            player2: "Empty",
+            hasComputer: true,
+            isFull: true
+          });
+        }
+
+        const game = args.hasComputer ?
+          await Game.create({
+            player1: context.user.username,
+            player2: "Empty",
+            hasComputer: true,
+            isFull: true
+          })
+        :
+          await Game.create({
+            player1: context.user.username
+          });
+
+        // const game = await Game.create({ player1: context.user.username });
 
         await User.findByIdAndUpdate(context.user._id, {
           $push: { games: game._id },

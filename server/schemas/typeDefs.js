@@ -6,6 +6,7 @@ const typeDefs = gql`
     player1: String!
     player2: String
     isFull: String
+    hasComputer: Boolean
     playerTurn: Int
     board: [String]
   }
