@@ -98,9 +98,9 @@ export function rankMoves(board, player) {
             }
 
             // Move following mine is results in a loss
-            movedBoard = makeMove(board, i, player);
+            let movedBoard = makeMove(board, i, player);
             if (isColumnOpen(movedBoard[i])) {
-                if (isNextMoveWin(movedboard, i, opponent)) {
+                if (isNextMoveWin(movedBoard, i, opponent)) {
                     rankedMoves[i] = 0;
                     // Jumps over scoring logic below and executes next loop
                     continue;
@@ -182,7 +182,7 @@ export function makeComputerMove(board, player) {
 }
 
 export function makePlayerMove(board, columnNumber, player) {
-    const newPlayerBoard = makeMove(board, columnNumber, player);
+    let newBoard = makeMove(board, columnNumber, player);
     // displayBoard(newPlayerBoard);
     
     let computerPlayer = 0;
@@ -194,20 +194,21 @@ export function makePlayerMove(board, columnNumber, player) {
         computerPlayer = 0;
     }
 
-    if (checkWinner(newPlayerBoard, columnNumber)) {
-        console.log("You win!");
-        return newPlayerBoard;
-    } else if (checkFullBoard(newPlayerBoard)) {
-        console.log("Cat's game!");
-        return newPlayerBoard;
+    if (checkWinner(newBoard, columnNumber)) {
+        // console.log("You win!");
+        return { newBoard, columnNumber };
+    } else if (checkFullBoard(newBoard)) {
+        // console.log("Cat's game!");
+        return { newBoard, columnNumber };
     }
 
-    const { newComputerBoard, compMove } = makeComputerMove(newPlayerBoard, computerPlayer);
-    if (checkWinner(newComputerBoard, compMove)) {
-        console.log("I win!");
-    } else if (checkFullBoard(newComputerBoard)) {
-        console.log("It's a tie!");
-    }
-    // displayBoard(newComputerBoard);
-    return newComputerBoard;
+    const { newComputerBoard, compMove } = makeComputerMove(newBoard, computerPlayer);
+    newBoard = [...newComputerBoard];
+    // if (checkWinner(newBoard, compMove)) {
+    //     console.log("I win!");
+    // } else if (checkFullBoard(newBoard)) {
+    //     console.log("It's a tie!");
+    // }
+    // displayBoard(newBoard);
+    return { newBoard, compMove };
 }
