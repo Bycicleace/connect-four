@@ -104,41 +104,40 @@ export function rankMoves(board, player) {
                     rankedMoves[i] = 0;
                     continue;
                 }
-            } else {
-               // >> Scoring Logic here
-                let score = 0;
-                // + 10 for each adjacent similar token
-                score = score + (10 * getSurroundingTokenCount(movedBoard, i));
-
-                // + 15 for adding to a chain (Use checkX functions)
-                let verticalCount = getVerticalWinCount(movedBoard, i);
-                if (verticalCount > 2) {
-                    console.log("Vertical Count: " + String(verticalCount), "Column: " + String(i));
-                }
-                let horizontalCount = getHorizontalWinCount(movedBoard, i);
-                let diagonalLeftCount = getDiagonalWinLeftCount(movedBoard, i);
-                let diagonalRightCount = getDiagonalWinRightCount(movedBoard, i);
-
-                // for each chain with 2 or more existing tokens, add 15.
-                score = score + (verticalCount > 2 ? 15 : 0);
-                score = score + (horizontalCount > 2 ? 15 : 0);
-                score = score + (diagonalLeftCount > 2 ? 15 : 0);
-                score = score + (diagonalRightCount > 2 ? 15 : 0);
-
-                // + 25 for blocking an opponent chain (Use checkX functions)
-                verticalCount = getVerticalWinCount(makeMove(board, i, opponent), i);
-                horizontalCount = getHorizontalWinCount(makeMove(board, i, opponent), i);
-                diagonalLeftCount = getDiagonalWinLeftCount(makeMove(board, i, opponent), i);
-                diagonalRightCount = getDiagonalWinRightCount(makeMove(board, i, opponent), i);
-
-                // for each chain with 2 or more existing tokens for my opponent, add 25
-                score = score + (verticalCount > 2 ? 25 : 0);
-                score = score + (horizontalCount > 2 ? 25 : 0);
-                score = score + (diagonalLeftCount > 2 ? 25 : 0);
-                score = score + (diagonalRightCount > 2 ? 25 : 0);
-
-                rankedMoves[i] = score; 
             }
+            // >> Scoring Logic here
+            let score = 0;
+            // + 10 for each adjacent similar token
+            score = score + (10 * getSurroundingTokenCount(movedBoard, i));
+
+            // + 15 for adding to a chain (Use checkX functions)
+            let verticalCount = getVerticalWinCount(movedBoard, i);
+            if (verticalCount > 2) {
+                console.log("Vertical Count: " + String(verticalCount), "Column: " + String(i));
+            }
+            let horizontalCount = getHorizontalWinCount(movedBoard, i);
+            let diagonalLeftCount = getDiagonalWinLeftCount(movedBoard, i);
+            let diagonalRightCount = getDiagonalWinRightCount(movedBoard, i);
+
+            // for each chain with 2 or more existing tokens, add 15.
+            score = score + (verticalCount > 2 ? 15 : 0);
+            score = score + (horizontalCount > 2 ? 15 : 0);
+            score = score + (diagonalLeftCount > 2 ? 15 : 0);
+            score = score + (diagonalRightCount > 2 ? 15 : 0);
+
+            // + 25 for blocking an opponent chain (Use checkX functions)
+            verticalCount = getVerticalWinCount(makeMove(board, i, opponent), i);
+            horizontalCount = getHorizontalWinCount(makeMove(board, i, opponent), i);
+            diagonalLeftCount = getDiagonalWinLeftCount(makeMove(board, i, opponent), i);
+            diagonalRightCount = getDiagonalWinRightCount(makeMove(board, i, opponent), i);
+
+            // for each chain with 2 or more existing tokens for my opponent, add 25
+            score = score + (verticalCount > 2 ? 25 : 0);
+            score = score + (horizontalCount > 2 ? 25 : 0);
+            score = score + (diagonalLeftCount > 2 ? 25 : 0);
+            score = score + (diagonalRightCount > 2 ? 25 : 0);
+
+            rankedMoves[i] = score; 
         } else {
             // -1 means the column is closed
             rankedMoves[i] = -1;
