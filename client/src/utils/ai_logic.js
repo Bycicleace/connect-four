@@ -100,7 +100,7 @@ export function rankMoves(board, player) {
             // Move following mine is results in a loss
             movedBoard = makeMove(board, i, player);
             if (isColumnOpen(movedBoard[i])) {
-                if (isNextMoveWin(board, i, opponent)) {
+                if (isNextMoveWin(movedboard, i, opponent)) {
                     rankedMoves[i] = 0;
                     continue;
                 }
