@@ -28,17 +28,17 @@ export function checkWinner(board, columnNumber) {
     // column should be a number corresponding to the column (left to right 0 - 6) that the last move was made in.
 
     // There are four directions to check given a move. Up/Down, Left/Right, and the two diagonals.
-    if (checkVerticalWin(board, columnNumber) ||
-        checkHorizontalWin(board, columnNumber) ||
-        checkDiagonalWinLeft(board, columnNumber) ||
-        checkDiagonalWinRight(board,columnNumber)) {
+    if (getVerticalWinCount(board, columnNumber) >= 4 ||
+        getHorizontalWinCount(board, columnNumber) >= 4 ||
+        getDiagonalWinLeftCount(board, columnNumber) >= 4 ||
+        getDiagonalWinRightCount(board,columnNumber) >= 4) {
             return true;
     } else {
         return false;
     }
 }
 
-function checkVerticalWin(board, columnNumber) {
+export function getVerticalWinCount(board, columnNumber) {
     // Check for win in columns. Column is the last column played.
     // If win, return true, else false.
 
@@ -46,44 +46,30 @@ function checkVerticalWin(board, columnNumber) {
     let { lastMove, player } = getLastMove(board,columnNumber);
     // This means the column is empty
     if (!player) {
-        return false;
+        return 0;
     }
 
     let winCount = 0;
     // The minimum amount of chips to win is 4, which would be spots 2, 3, 4, and 5.
     // If the last move is 0, 1 or 2, then it's possible, otherwise, it's not.
-    if (lastMove > 2) {
-        // Impossible to win 
-        return false;
-    } else {
-        for (let index = lastMove; index < board[columnNumber].length; index++) {
-            if (board[columnNumber][index] === player) {
-                winCount ++;
-            } else {
-                if (winCount >= 4) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-
-        if (winCount >= 4) {
-            return true;
+    for (let index = lastMove; index < board[columnNumber].length; index++) {
+        if (board[columnNumber][index] === player) {
+            winCount ++;
         } else {
-            return false;
+            break;
         }
     }
+    return winCount;
 }
 
-function checkHorizontalWin(board, columnNumber) {
+export function getHorizontalWinCount(board, columnNumber) {
     // Check for win in rows. ColumnNumber is the last column played.
     // If win, return true, else false
     let { lastMove, player } = getLastMove(board, columnNumber);
     // console.log(`Last move: column ${columnNumber}, row ${lastMove}`);
 
     if (!player) {
-        return false;
+        return 0;
     }
 
     // Set to one as the columnNumber's chip is then counted.
@@ -122,16 +108,10 @@ function checkHorizontalWin(board, columnNumber) {
         }
     }
 
-    if (winCount >= 4) {
-        //console.log(true, player, winCount, winArray);
-        return true;
-    } else {
-        //console.log(false, player, winCount, winArray);
-        return false;
-    }
+    return winCount;
 }
 
-function checkDiagonalWinLeft(board, columnNumber) {
+export function getDiagonalWinLeftCount(board, columnNumber) {
     // Check for win from upper left to lower right diagonal. Column is the last column played (optional)
     // If win, return true, else false
 
@@ -140,7 +120,7 @@ function checkDiagonalWinLeft(board, columnNumber) {
 
     if (!player) {
         // column is empty
-        return false;
+        return 0;
     }
 
     // defined for ease
@@ -199,17 +179,11 @@ function checkDiagonalWinLeft(board, columnNumber) {
         }
     }
 
-    if (winCount >= 4) {
-        // console.log(true, player, winMoves);
-        return true;
-    } else {
-        // console.log(false, player, winMoves);
-        return false;
-    }
+    return winCount;
 
 }
 
-function checkDiagonalWinRight(board, columnNumber = -1) {
+export function getDiagonalWinRightCount(board, columnNumber = -1) {
     // Check for win from upper right to lower left diagonal. Column is the last column played (optional)
     // If win, return true, else false.
 
@@ -218,7 +192,7 @@ function checkDiagonalWinRight(board, columnNumber = -1) {
 
     if (!player) {
         // column is empty
-        return false;
+        return 0;
     }
 
     // defined for ease
@@ -277,16 +251,10 @@ function checkDiagonalWinRight(board, columnNumber = -1) {
         }
     }
 
-    if (winCount >= 4) {
-        // console.log(true, player, winMoves);
-        return true;
-    } else {
-        // console.log(false, player, winMoves);
-        return false;
-    }
+    return winCount;
 }
 
-function getLastMove(board, columnNumber) {
+export function getLastMove(board, columnNumber) {
     let lastMove = getAvailableSpot(board[columnNumber]) + 1;
     let player = board[columnNumber][lastMove];
 
@@ -312,7 +280,7 @@ export function makeMove(inBoard, columnNumber, player) {
     }
 }
 
-function isColumnOpen(columnArray) {
+export function isColumnOpen(columnArray) {
     // Takes in a columnArray array. If it's full, returns false, if not, returns true.
     if (columnArray[0] === '0') {
         return true;
@@ -321,7 +289,7 @@ function isColumnOpen(columnArray) {
     }
 }
 
-function getAvailableSpot(columnArray) {
+export function getAvailableSpot(columnArray) {
     // Takes in a columnArray array and returns the next available row to use. If no spots available, return -1
     let row = -1
     for (let index = 5; index >= 0; index--) {
@@ -347,17 +315,41 @@ export function checkFullBoard(board) {
     }
 }
 
-// function displayBoard(board) {
-//     // Used to console log the board correctly.
-//     let row;
-//     for (let rowNum = 0; rowNum < 6; rowNum++) {
-//         row = '';
-//         for (let colNum = 6; colNum >= 0; colNum--) {
-//             row += board[colNum][rowNum];
-//         }
-//     }
-    
-// }
+export function getSurroundingTokenCount(board, columnNumber) {
+    const { lastMove, player } = getLastMove(board, columnNumber);
+    let tokenCount = 0;
+    /*
+        If column is > 0, check column - 1
+        If column < 6, check column + 1
+        If lastMove > 0, check lastMove - 1
+        If lastMove < 5, check lastMove + 1
+    */
+   for (let col = columnNumber - 1; col <= columnNumber + 1; col++) {
+       for (let row = lastMove - 1; row <= lastMove + 1; row++) {
+           if (col >= 0 && col <= 6) {
+               if (row >= 0 && row <=5) {
+                 if (board[col][row] === player) {
+                     tokenCount++;
+                 }
+               }
+           }
+       }
+   }
+   tokenCount--; // Remove one for current move
+   return tokenCount;
+}
+
+function displayBoard(board) {
+    // Used to console log the board correctly.
+    let row;
+    for (let rowNum = 0; rowNum < 6; rowNum++) {
+        row = '';
+        for (let colNum = 6; colNum >= 0; colNum--) {
+            row += board[colNum][rowNum];
+        }
+    console.log(row);
+    }  
+}
 
 // module.exports = {
 //     checkWinner,

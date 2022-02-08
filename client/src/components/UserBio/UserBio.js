@@ -10,20 +10,32 @@ const UserBio = (props) => {
   const userId = Auth.getProfile().data._id;
   const [createGame] = useMutation(ADD_GAME);
 
-  const handleCreateGame = (event, username) => {
+  const handleCreateGame = (event) => {
     event.preventDefault();
     try {
-      createGame({
-        variables: {
-          player1: username,
-        },
-      });
+      createGame();
       // window.location.reload();
       setOpenGames(openGames + 1);
     } catch (e) {
       console.error(e);
     }
   };
+
+  const handleCreateComputerGame = (event) => {
+    event.preventDefault();
+    try {
+      createGame({
+        variables: {
+          hasComputer: true
+        }
+      }).then(gameData => {
+        console.log(gameData);
+        window.location.replace('/game/' + gameData.data.addGame._id);
+      })
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   const { loading, data } = useQuery(QUERY_USER, {
     variables: { id: userId },
@@ -46,10 +58,16 @@ const UserBio = (props) => {
         // Win percentage? */}
         </div>
         <button
-          onClick={(e) => handleCreateGame(e, data.user.username)}
+          onClick={(e) => handleCreateGame(e)}
           className="userBio__button"
         >
           Create a Game!
+        </button>
+        <button
+          onClick={(e) => handleCreateComputerGame(e)}
+          className="userBio__button"
+        >
+          Play Computer!
         </button>
       </div>
     </div>

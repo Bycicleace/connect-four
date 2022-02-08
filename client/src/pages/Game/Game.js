@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import GameBoard from "../../components/GameBoard/GameBoard";
 import { useParams } from "react-router-dom";
 import { QUERY_GAME } from "../../utils/queries";
@@ -8,6 +8,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 import "./Game.css";
 import { checkWinner, checkFullBoard, makeMove } from "../../utils/game_functions.js";
+import { makePlayerMove } from "../../utils/ai_logic.js";
 
 const Game = () => {
   const params = useParams();
@@ -19,6 +20,8 @@ const Game = () => {
   const currentProfile = Auth.getProfile();
   // console.log(currentProfile);
 
+  const [refresh, setRefresh] = useState(true);
+
   if (loading) {
       return (
           <div>Loading....</div>
@@ -26,6 +29,7 @@ const Game = () => {
   };
   
   const board = data?.game?.board;
+  const hasComputer = data?.game?.hasComputer;
   const currentPlayerNumber = data?.game?.playerTurn;
   let nextTurn = 0;
   let isWon = checkWinner(board, 0) ||
@@ -97,6 +101,36 @@ const Game = () => {
   }
   // console.log(board, currentPlayerNumber, currentPlayerName, nextTurn);
 
+  async function chooseColumnComputer(colNumber) {
+    // Make player move and computer move, and return the new board
+    const { newBoard, compMove } = makePlayerMove(board, colNumber, currentPlayerNumber);
+    // send update to server, then "refresh" page
+    try {
+      let playerNumber = currentPlayerNumber;
+      if (checkWinner(makeMove(board, colNumber, currentPlayerNumber), colNumber)) {
+        playerNumber = currentPlayerNumber;
+      } else if (checkWinner(newBoard, compMove)) {
+        playerNumber = nextTurn;
+      }
+
+      await updateBoard({
+        variables: {
+          id: params.gameId,
+          board: newBoard,
+          playerTurn: playerNumber
+        }
+      });
+
+      if (error) {
+        console.log("Call Error: " + error);
+      }
+      setRefresh(!refresh);
+    } catch (e) {
+      console.log("Error: " + e);
+      console.log(error);
+    }
+  }
+
   let currentColor = "";
   if (currentPlayerNumber === 1) {
     currentColor = "Red";
@@ -115,13 +149,13 @@ const Game = () => {
             <></>
           )}
           <div className="game__moves">
-            <button id="col6" onClick={() => chooseColumn(6)} disabled={isWon || !isMyTurn}></button>
-            <button id="col5" onClick={() => chooseColumn(5)} disabled={isWon || !isMyTurn}></button>
-            <button id="col4" onClick={() => chooseColumn(4)} disabled={isWon || !isMyTurn}></button>
-            <button id="col3" onClick={() => chooseColumn(3)} disabled={isWon || !isMyTurn}></button>
-            <button id="col2" onClick={() => chooseColumn(2)} disabled={isWon || !isMyTurn}></button>
-            <button id="col1" onClick={() => chooseColumn(1)} disabled={isWon || !isMyTurn}></button>
-            <button id="col0" onClick={() => chooseColumn(0)} disabled={isWon || !isMyTurn}></button>
+            <button id="col6" onClick={() => (hasComputer ? chooseColumnComputer(6) : chooseColumn(6))} disabled={isWon || !isMyTurn}></button>
+            <button id="col5" onClick={() => (hasComputer ? chooseColumnComputer(5) : chooseColumn(5))} disabled={isWon || !isMyTurn}></button>
+            <button id="col4" onClick={() => (hasComputer ? chooseColumnComputer(4) : chooseColumn(4))} disabled={isWon || !isMyTurn}></button>
+            <button id="col3" onClick={() => (hasComputer ? chooseColumnComputer(3) : chooseColumn(3))} disabled={isWon || !isMyTurn}></button>
+            <button id="col2" onClick={() => (hasComputer ? chooseColumnComputer(2) : chooseColumn(2))} disabled={isWon || !isMyTurn}></button>
+            <button id="col1" onClick={() => (hasComputer ? chooseColumnComputer(1) : chooseColumn(1))} disabled={isWon || !isMyTurn}></button>
+            <button id="col0" onClick={() => (hasComputer ? chooseColumnComputer(0) : chooseColumn(0))} disabled={isWon || !isMyTurn}></button>
           </div>
       </section>
       <section className="game__container">
