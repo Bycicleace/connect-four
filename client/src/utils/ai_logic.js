@@ -53,15 +53,23 @@ import { checkFullBoard,
          checkWinner,
          makeMove,
          isColumnOpen,
-         getSurroundingTokenCount } from "./game_functions";
+         getSurroundingTokenCount,
+         getVerticalWinCount,
+         getHorizontalWinCount,
+         getDiagonalWinLeftCount,
+         getDiagonalWinRightCount } from "./game_functions";
 
 
-export function rankMoves(board, columnNumber, player) {
+export function rankMoves(board, player) {
+    // If the board is full, no valid moves
     if (checkFullBoard(board) === true) {
         return [-1,-1,-1,-1,-1,-1,-1];
     }
+
     let rankedMoves = [0,0,0,0,0,0,0];
     let opponent = 0;
+
+    // Get opponent number
     if (player === 1) {
         opponent = 2;
     } else if (player === 2) {
@@ -69,6 +77,8 @@ export function rankMoves(board, columnNumber, player) {
     } else {
         opponent = 0;
     }
+
+    // Check each move for various things
     for (let i = 0; i <= 6; i++) {
         if (isColumnOpen(board[i])) {
             // Check win for me!
@@ -88,22 +98,70 @@ export function rankMoves(board, columnNumber, player) {
             }
 
             // Move following mine is results in a loss
-            tempBoard = makeMove(board, i, player);
-            if (isColumnOpen(tempBoard[i])) {
+            movedBoard = makeMove(board, i, player);
+            if (isColumnOpen(movedBoard[i])) {
                 if (isNextMoveWin(board, i, opponent)) {
                     rankedMoves[i] = 0;
                 }
             }
 
             // >> Scoring Logic here
+            let score = 0;
+            // + 10 for each adjacent similar token
+            score = score + (10 * getSurroundingTokenCount(movedBoard, i));
+
+            // + 15 for adding to a chain (Use checkX functions)
+            let verticalCount = getVerticalWinCount(movedBoard, i);
+            let horizontalCount = getHorizontalWinCount(movedBoard, i);
+            let diagonalLeftCount = getDiagonalWinLeftCount(movedBoard, i);
+            let diagonalRightCount = getDiagonalWinRightCount(movedBoard, i);
+
+            // for each chain with 2 or more existing tokens, add 15.
+            score = score + (verticalCount > 2 ? 15 : 0);
+            score = score + (horizontalCount > 2 ? 15 : 0);
+            score = score + (diagonalLeftCount > 2 ? 15 : 0);
+            score = score + (diagonalRightCount > 2 ? 15 : 0);
+
+            // + 25 for blocking an opponent chain (Use checkX functions)
+            verticalCount = getVerticalWinCount(makeMove(board, i, opponent), i);
+            horizontalCount = getHorizontalWinCount(makeMove(board, i, opponent), i);
+            diagonalLeftCount = getDiagonalWinLeftCount(makeMove(board, i, opponent), i);
+            diagonalRightCount = getDiagonalWinRightCount(makeMove(board, i, opponent), i);
+
+            // for each chain with 2 or more existing tokens for my opponent, add 25
+            score = score + (verticalCount > 2 ? 25 : 0);
+            score = score + (horizontalCount > 2 ? 25 : 0);
+            score = score + (diagonalLeftCount > 2 ? 25 : 0);
+            score = score + (diagonalRightCount > 2 ? 25 : 0);
+
+            rankedMoves[i] = score;
         } else {
             // -1 means the column is closed
             rankedMoves[i] = -1;
         }
     }
+
+    // Array of scored moves returned
+    console.log("Ranked Moves array: " + String(rankedMoves));
     return rankedMoves;
 }
 
 export function isNextMoveWin(board, columnNumber, player) {
     return checkWinner(makeMove(board,columnNumber, player), columnNumber);
 };
+
+export function getComputerMove(rankedMoves) {
+    // Get highest value from rankedMoves
+    const highestValue = Math.max(...rankedMoves);
+
+    // Get all indicies that house that value
+    let moves = [];
+    for (let i = 0; i < rankedMoves.length; i++) {
+        if (rankedMoves[i] === highestValue) {
+            moves.push(i);
+        }
+    }
+
+    // Generate a random selection from array
+    const selection = Math.floor(Math.random() * moves.length + 1);
+}

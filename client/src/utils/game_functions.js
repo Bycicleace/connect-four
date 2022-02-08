@@ -28,17 +28,17 @@ export function checkWinner(board, columnNumber) {
     // column should be a number corresponding to the column (left to right 0 - 6) that the last move was made in.
 
     // There are four directions to check given a move. Up/Down, Left/Right, and the two diagonals.
-    if (checkVerticalWin(board, columnNumber) >= 4 ||
-        checkHorizontalWin(board, columnNumber) >= 4 ||
-        checkDiagonalWinLeft(board, columnNumber) >= 4 ||
-        checkDiagonalWinRight(board,columnNumber) >= 4) {
+    if (getVerticalWinCount(board, columnNumber) >= 4 ||
+        getHorizontalWinCount(board, columnNumber) >= 4 ||
+        getDiagonalWinLeftCount(board, columnNumber) >= 4 ||
+        getDiagonalWinRightCount(board,columnNumber) >= 4) {
             return true;
     } else {
         return false;
     }
 }
 
-function checkVerticalWin(board, columnNumber) {
+function getVerticalWinCount(board, columnNumber) {
     // Check for win in columns. Column is the last column played.
     // If win, return true, else false.
 
@@ -72,7 +72,7 @@ function checkVerticalWin(board, columnNumber) {
     }
 }
 
-function checkHorizontalWin(board, columnNumber) {
+function getHorizontalWinCount(board, columnNumber) {
     // Check for win in rows. ColumnNumber is the last column played.
     // If win, return true, else false
     let { lastMove, player } = getLastMove(board, columnNumber);
@@ -121,7 +121,7 @@ function checkHorizontalWin(board, columnNumber) {
     return winCount;
 }
 
-function checkDiagonalWinLeft(board, columnNumber) {
+function getDiagonalWinLeftCount(board, columnNumber) {
     // Check for win from upper left to lower right diagonal. Column is the last column played (optional)
     // If win, return true, else false
 
@@ -193,7 +193,7 @@ function checkDiagonalWinLeft(board, columnNumber) {
 
 }
 
-function checkDiagonalWinRight(board, columnNumber = -1) {
+function getDiagonalWinRightCount(board, columnNumber = -1) {
     // Check for win from upper right to lower left diagonal. Column is the last column played (optional)
     // If win, return true, else false.
 
