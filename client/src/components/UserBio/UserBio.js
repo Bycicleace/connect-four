@@ -13,11 +13,7 @@ const UserBio = (props) => {
   const handleCreateGame = (event, username) => {
     event.preventDefault();
     try {
-      createGame({
-        variables: {
-          player1: username,
-        },
-      });
+      createGame();
       // window.location.reload();
       setOpenGames(openGames + 1);
     } catch (e) {
