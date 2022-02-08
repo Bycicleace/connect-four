@@ -24,6 +24,10 @@ const gameSchema = new Schema(
             type: Boolean,
             default: false
         },
+        hasComputer: {
+            type: Boolean,
+            default: false
+        },
         playerTurn: {
             type: Number,
             default: 2

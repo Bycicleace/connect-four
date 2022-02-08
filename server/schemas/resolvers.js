@@ -22,15 +22,6 @@ const resolvers = {
     // resolver for adding a game
     addGame: async (parent, args, context) => {
       if (context.user) {
-        if (args.hasComputer) {
-          const game = await Game.create({
-            player1: context.user.username,
-            player2: "Empty",
-            hasComputer: true,
-            isFull: true
-          });
-        }
-
         const game = args.hasComputer ?
           await Game.create({
             player1: context.user.username,
@@ -40,7 +31,9 @@ const resolvers = {
           })
         :
           await Game.create({
-            player1: context.user.username
+            player1: context.user.username,
+            hasComputer: false,
+            isFull: false
           });
 
         // const game = await Game.create({ player1: context.user.username });
