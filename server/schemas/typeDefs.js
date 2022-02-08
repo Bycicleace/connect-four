@@ -32,7 +32,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addGame: Game
+    addGame(hasComputer: Boolean): Game
     joinGame(gameId: ID!): Game
     deleteGame(gameId: ID!): Game
     updateBoard(gameId: ID!, gameBoard: [String]!, playerTurn: Int!): Game

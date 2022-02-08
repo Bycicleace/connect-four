@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const ADD_GAME = gql`
-  mutation addGame {
-    addGame {
+  mutation addGame($hasComputer: Boolean) {
+    addGame(hasComputer: $hasComputer) {
       _id
       player1
       player2

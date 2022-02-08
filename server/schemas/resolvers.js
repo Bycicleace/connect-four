@@ -25,13 +25,14 @@ const resolvers = {
         const game = args.hasComputer ?
           await Game.create({
             player1: context.user.username,
-            player2: "Empty",
+            player2: "Computer",
             hasComputer: true,
             isFull: true
           })
         :
           await Game.create({
             player1: context.user.username,
+            player2: "Empty",
             hasComputer: false,
             isFull: false
           });
